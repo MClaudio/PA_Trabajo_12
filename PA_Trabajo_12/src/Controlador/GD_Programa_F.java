@@ -1,10 +1,12 @@
 package controlador;
 
-import Modelo.Programa_F.*;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
+import modelo.Programa_F.Doctor;
+import modelo.Programa_F.Paciente;
 
 
 /**
