@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ import javax.swing.JTextField;
 public class VtnCrear_F_Consulta extends JInternalFrame implements ActionListener{
     private JTextField txtFecha;
     private JTextField txtHora;
+    private JComboBox medicos;
+    private JComboBox pacientes;
     
     public VtnCrear_F_Consulta() {
         initComponets();
@@ -51,17 +54,16 @@ public class VtnCrear_F_Consulta extends JInternalFrame implements ActionListene
         panel.add(new JLabel("Doctor:"), gbc);
         gbc.gridx=1;
         gbc.gridy=2;
-        //txtCedula=new JTextField(15);
-        //panel.add(txtCedula, gbc);
+        medicos=new JComboBox();
+        panel.add(medicos, gbc);
         
         gbc.gridx=0;
         gbc.gridy=3;
         panel.add(new JLabel("Pciente:"), gbc);
         gbc.gridx=1;
         gbc.gridy=3;
-        //txtEspecialidad=new JTextField(5);
-        //panel.add(txtEspecialidad, gbc);
-        
+        pacientes=new JComboBox();
+        panel.add(pacientes, gbc);
         
         gbc.gridx=1;
         gbc.gridy=4;

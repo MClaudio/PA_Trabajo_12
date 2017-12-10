@@ -1,5 +1,7 @@
 package vista;
 
+import Vista.VtnCrear_E_Equipo;
+import Vista.VtnCrear_E_Inscripcion;
 import controlador.GD_Programa_F;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -216,7 +218,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         item2Submenu1Menu5.setActionCommand("item2Submenu1Menu5"); //caso 26
         sub1Menu5.add(item2Submenu1Menu5);
 
-        JMenuItem item3Submenu1Menu5 = new JMenuItem("Submenu 3");
+        JMenuItem item3Submenu1Menu5 = new JMenuItem("Crear inscripcion");
         item3Submenu1Menu5.addActionListener(this);
         item3Submenu1Menu5.setActionCommand("item3Submenu1Menu5"); //caso 27
         sub1Menu5.add(item3Submenu1Menu5);
@@ -373,9 +375,10 @@ public class VtnPrincipal extends JFrame implements ActionListener {
                 crearJugador();
                 break;
             case "item2Submenu1Menu5": //caso 26
-
+                crearEquipo();
                 break;
             case "item3Submenu1Menu5": //caso 27
+                crearInscripcion();
                 break;
 
             //Inicio listar Menu 5 Programa 5
@@ -473,6 +476,28 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             vcj.setVisible(true);
             vcj.setSelected(true);
             escritorio.add(vcj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void crearEquipo(){
+        VtnCrear_E_Equipo vce=new VtnCrear_E_Equipo();
+        try {
+            vce.setVisible(true);
+            vce.setSelected(true);
+            escritorio.add(vce);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void crearInscripcion(){
+        VtnCrear_E_Inscripcion vci=new VtnCrear_E_Inscripcion();
+        try {
+            vci.setVisible(true);
+            vci.setSelected(true);
+            escritorio.add(vci);
         } catch (Exception e) {
             e.printStackTrace();
         }
