@@ -34,7 +34,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         JMenuBar barraMenu = new JMenuBar();
 
         //Inicio Menu 1
-        JMenu menu1 = new JMenu("Programa A");
+        JMenu menu1 = new JMenu("Menu 1");
 
         JMenu sub1Menu1 = new JMenu("Crear");
 
@@ -77,7 +77,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         //Fin Menu 1
 
         //Inicio Menu 2
-        JMenu menu2 = new JMenu("Programa B");
+        JMenu menu2 = new JMenu("Menu 2");
         JMenu sub1Menu2 = new JMenu("Crear");
 
         JMenuItem item1Submenu1Menu2 = new JMenuItem("Submenu 1");
@@ -203,10 +203,10 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         //Fin Menu 4
 
         //Inicio Menu 5
-        JMenu menu5 = new JMenu("Menu 5");
+        JMenu menu5 = new JMenu("Programa E");
         JMenu sub1Menu5 = new JMenu("Crear");
 
-        JMenuItem item1Submenu1Menu5 = new JMenuItem("Submenu 1");
+        JMenuItem item1Submenu1Menu5 = new JMenuItem("Crear Jugador");
         item1Submenu1Menu5.addActionListener(this);
         item1Submenu1Menu5.setActionCommand("item1Submenu1Menu5"); //caso 25
         sub1Menu5.add(item1Submenu1Menu5);
@@ -370,6 +370,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
             //Inicio crear Menu 5 Programa 5
             case "item1Submenu1Menu5": //caso 25
+                crearJugador();
                 break;
             case "item2Submenu1Menu5": //caso 26
                 break;
@@ -460,6 +461,17 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             cc.setVisible(true);
             cc.setSelected(true);
             escritorio.add(cc);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void crearJugador(){
+        VtnCrear_E_Jugador vcj=new VtnCrear_E_Jugador();
+        try {
+            vcj.setVisible(true);
+            vcj.setSelected(true);
+            escritorio.add(vcj);
         } catch (Exception e) {
             e.printStackTrace();
         }
