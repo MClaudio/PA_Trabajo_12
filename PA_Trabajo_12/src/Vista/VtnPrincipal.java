@@ -211,7 +211,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         item1Submenu1Menu5.setActionCommand("item1Submenu1Menu5"); //caso 25
         sub1Menu5.add(item1Submenu1Menu5);
 
-        JMenuItem item2Submenu1Menu5 = new JMenuItem("Submenu 2");
+        JMenuItem item2Submenu1Menu5 = new JMenuItem("Crear Equipo");
         item2Submenu1Menu5.addActionListener(this);
         item2Submenu1Menu5.setActionCommand("item2Submenu1Menu5"); //caso 26
         sub1Menu5.add(item2Submenu1Menu5);
@@ -373,6 +373,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
                 crearJugador();
                 break;
             case "item2Submenu1Menu5": //caso 26
+
                 break;
             case "item3Submenu1Menu5": //caso 27
                 break;
@@ -476,5 +477,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
+    
+    
 
 }

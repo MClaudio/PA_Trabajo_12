@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -34,7 +35,7 @@ public class VtnCrear_E_Jugador extends JInternalFrame implements ActionListener
         setMaximizable(true);
         setSize(300, 200);
         
-        Panel panel=new Panel();
+        JPanel panel=new JPanel();
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc=new GridBagConstraints();
         
