@@ -27,7 +27,7 @@ public class GD_Programa_F {
         System.out.println(archivo.getAbsolutePath());
         
         if (archivo.exists()) {
-            FileWriter file=new FileWriter(archivo);
+            FileWriter file=new FileWriter(archivo,true);
             BufferedWriter escritura=new BufferedWriter(file);
             escritura.append(nombre+"|"+apellido+"|"+cedula+"|"+"|"+especialidad);
             escritura.close();
