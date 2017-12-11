@@ -1,8 +1,5 @@
 package vista;
 
-import Vista.VtnCrear_E_Equipo;
-import Vista.VtnCrear_E_Inscripcion;
-import controlador.GD_Programa_F;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
