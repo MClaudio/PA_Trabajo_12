@@ -12,8 +12,6 @@ import modelo.Programa_F.Consulta;
 import modelo.Programa_F.Doctor;
 import modelo.Programa_F.Paciente;
 
-
-
 public class GD_Programa_F {
 
     private List<Doctor> doctores;
@@ -28,25 +26,14 @@ public class GD_Programa_F {
 
         archivo = new File(pathname);
     }
-
+ 
     public void creaMedico(String especialidad, String cedula, String nombre, String apellido) throws Exception {
-        Doctor doctor = new Doctor();
-        doctor.setEspecialidad(especialidad);
-        doctor.setNombre(nombre);
-        doctor.setApellido(apellido);
-        doctor.setCedula(cedula);
-
-        escribeDatosMedico(doctor);
-
-    }
-
-    public void escribeDatosMedico(Doctor doctor) throws IOException, Exception {
         System.out.println(archivo.getAbsolutePath());
 
         if (archivo.exists()) {
             FileWriter file = new FileWriter(archivo, true);
             BufferedWriter escritura = new BufferedWriter(file);
-            escritura.append(doctor.getNombre() + "|" + doctor.getApellido() + "|" + doctor.getCedula() + "|" + doctor.getEspecialidad() + "|\n");
+            escritura.append(nombre + "|" + apellido + "|" + cedula + "|" + especialidad + "|\n");
             escritura.close();
 
             leeDatosMedico();
@@ -55,7 +42,9 @@ public class GD_Programa_F {
         else {
             throw new Exception("Error el archivo no existe.");
         }
+
     }
+
 
     public List<Doctor> leeDatosMedico() throws Exception {
         Doctor doctor = new Doctor();
