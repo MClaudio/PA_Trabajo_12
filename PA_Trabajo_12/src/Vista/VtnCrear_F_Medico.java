@@ -1,7 +1,7 @@
 
-package vista;
+package Vista;
 
-import controlador.GD_Programa_F;
+import Controlador.GD_Programa_F;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;

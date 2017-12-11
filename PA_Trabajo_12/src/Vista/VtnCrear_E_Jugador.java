@@ -1,5 +1,5 @@
 
-package vista;
+package Vista;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

@@ -1,4 +1,4 @@
-package vista;
+package Vista;
 
 import Vista.VntCrear_A_Revista;
 import Vista.VntCrear_A_Autor;
@@ -267,7 +267,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
         JMenu sub2Menu6 = new JMenu("Listar");
 
-        JMenuItem item1Submenu2Menu6 = new JMenuItem("Submenu 1");
+        JMenuItem item1Submenu2Menu6 = new JMenuItem("Listar Doctores");
         item1Submenu2Menu6.addActionListener(this);
         item1Submenu2Menu6.setActionCommand("item1Submenu2Menu6"); //caso 34
         sub2Menu6.add(item1Submenu2Menu6);
@@ -403,6 +403,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
             //Inicio listar Menu 6 Programa 6
             case "item1Submenu2Menu6": //caso 34
+                listrMedicos();
                 break;
             case "item2Submenu2Menu6": //caso 35
                 break;
@@ -482,6 +483,17 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void listrMedicos(){
+        Vista.VtnListar_F_Medico vlm=new Vista.VtnListar_F_Medico();
+        try {
+            vlm.setVisible(true);
+            vlm.setSelected(true);
+            escritorio.add(vlm);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -1,5 +1,5 @@
 
-package modelo.Programa_F;
+package Modelo.Programa_F;
 
 public class Doctor extends Persona{
     private String especialidad;

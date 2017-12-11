@@ -1,4 +1,4 @@
-package controlador;
+package Controlador;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,9 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Programa_F.Consulta;
-import modelo.Programa_F.Doctor;
-import modelo.Programa_F.Paciente;
+import Modelo.Programa_F.Consulta;
+import Modelo.Programa_F.Doctor;
+import Modelo.Programa_F.Paciente;
 
 public class GD_Programa_F {
 

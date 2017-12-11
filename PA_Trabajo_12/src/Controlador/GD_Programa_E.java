@@ -1,11 +1,11 @@
 
-package controlador;
+package Controlador;
 
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Programa_E.Equipo;
-import modelo.Programa_E.Inscripcion;
-import modelo.Programa_E.Jugador;
+import Modelo.Programa_E.Equipo;
+import Modelo.Programa_E.Inscripcion;
+import Modelo.Programa_E.Jugador;
 
 /**
  *

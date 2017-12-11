@@ -1,5 +1,5 @@
 
-package modelo.Programa_E;
+package Modelo.Programa_E;
 
 import java.util.ArrayList;
 import java.util.List;
