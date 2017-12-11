@@ -1,7 +1,7 @@
 
 package modelo.Programa_F;
 
-public class Doctor {
+public class Doctor extends Persona{
     private String especialidad;
 
     public String getEspecialidad() {
