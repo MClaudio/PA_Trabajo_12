@@ -16,7 +16,7 @@ public class VntCrear_A_Revista extends JInternalFrame implements ActionListener
         implement();
     }
 
-    public void implement() {
+    private void implement() {
         setTitle("hola");
         setClosable(true);
         setMaximizable(true);

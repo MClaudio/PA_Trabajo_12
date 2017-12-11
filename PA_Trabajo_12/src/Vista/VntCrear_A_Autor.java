@@ -17,7 +17,7 @@ public class VntCrear_A_Autor extends JInternalFrame implements ActionListener {
         implement();
     }
     
-    public void implement(){
+    private void implement(){
         setTitle("");
         setClosable(true);
         setMaximizable(true);

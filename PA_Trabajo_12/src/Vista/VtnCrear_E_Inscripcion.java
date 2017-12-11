@@ -27,7 +27,7 @@ public class VtnCrear_E_Inscripcion extends JInternalFrame implements ActionList
         initComponents();
     }
     
-    public void initComponents(){
+    private void initComponents(){
         setTitle("Crear Inscripcion");
         setClosable(true);
         setMaximizable(true);

@@ -26,7 +26,7 @@ public class VtnCrear_E_Equipo extends JInternalFrame implements ActionListener{
         initComponents();
     }
     
-    public void initComponents(){
+    private void initComponents(){
         setTitle("Crear Equipo");
         setClosable(true);
         setMaximizable(true);

@@ -1,14 +1,15 @@
 package vista;
 
+import Vista.VntCrear_A_Revista;
+import Vista.VntCrear_A_Autor;
+import Vista.VntCrear_A_Articulo;
+import Vista.VtnCrear_E_Inscripcion;
+import Vista.VtnCrear_E_Equipo;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyVetoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -450,8 +451,8 @@ public class VtnPrincipal extends JFrame implements ActionListener {
     private void crearArticulo() {
         VntCrear_A_Articulo vaa = new VntCrear_A_Articulo();
         try {
-            vaa.setVisisble(true);
-            vaa.setSelection(true);
+            vaa.setVisible(true);
+            vaa.setSelected(true);
             escritorio.add(vaa);
         } catch (Exception e) {
             e.printStackTrace();
@@ -462,8 +463,8 @@ public class VtnPrincipal extends JFrame implements ActionListener {
     private void crearAutor() {
         VntCrear_A_Autor caa = new VntCrear_A_Autor();
         try {
-            caa.setVisisble(true);
-            caa.setSelection(true);
+            caa.setVisible(true);
+            caa.setSelected(true);
             escritorio.add(caa);
         } catch (Exception e) {
             e.printStackTrace();

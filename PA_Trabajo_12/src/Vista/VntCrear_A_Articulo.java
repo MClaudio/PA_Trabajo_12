@@ -22,7 +22,7 @@ public class VntCrear_A_Articulo extends JInternalFrame implements ActionListene
         implement();
     }
     
-    public void implement(){
+    private void implement(){
         setTitle("");
         setClosable(true);
         setMaximizable(true);
@@ -52,6 +52,8 @@ public class VntCrear_A_Articulo extends JInternalFrame implements ActionListene
         btnGuardar.addActionListener(this);
         btnGuardar.setActionCommand("btnGuardar");
         panel.add(btnGuardar);
+        
+        getContentPane().add(panel);
     }
     
     @Override
