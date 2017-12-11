@@ -14,7 +14,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-
 public class VtnPrincipal extends JFrame implements ActionListener {
 
     private JDesktopPane escritorio;
@@ -38,17 +37,17 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
         JMenu sub1Menu1 = new JMenu("Crear");
 
-        JMenuItem item1Submenu1Menu1 = new JMenuItem("Submenu 1");
+        JMenuItem item1Submenu1Menu1 = new JMenuItem("Revista");
         item1Submenu1Menu1.addActionListener(this);
         item1Submenu1Menu1.setActionCommand("item1Submenu1Menu1"); //caso 1
         sub1Menu1.add(item1Submenu1Menu1);
 
-        JMenuItem item2Submenu1Menu1 = new JMenuItem("Submenu 2");
+        JMenuItem item2Submenu1Menu1 = new JMenuItem("Articulo");
         item2Submenu1Menu1.addActionListener(this);
         item2Submenu1Menu1.setActionCommand("item2Submenu1Menu1"); //caso 2
         sub1Menu1.add(item2Submenu1Menu1);
 
-        JMenuItem item3Submenu1Menu1 = new JMenuItem("Submenu 3");
+        JMenuItem item3Submenu1Menu1 = new JMenuItem("Autor");
         item3Submenu1Menu1.addActionListener(this);
         item3Submenu1Menu1.setActionCommand("item3Submenu1Menu1"); //caso 3
         sub1Menu1.add(item3Submenu1Menu1);
@@ -435,55 +434,58 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         }
 
     }
-    
-    private void crearRevista(){
-        VntCrear_A_Revista car=new VntCrear_A_Revista();
-        try{
-            car.setVisible(true);
-            car.setSelected(true);
-            escritorio.add(car);
-        }catch(Exception e){
+
+    private void crearRevista() {
+        VntCrear_A_Revista cat = new VntCrear_A_Revista();
+        try {
+            cat.setVisible(true);
+            cat.setSelected(true);
+            escritorio.add(cat);
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-    
-    private void crearArticulo(){
-        VntCrear_A_Articulo vaa=new VntCrear_A_Articulo();
-        try{
-            vaa.setVisisble(true);
-            vaa.setSelection(true);
-            escritorio.add(vaa);
-        }catch(Exception e){
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void crearAutor(){
-        VntCrear_A_Autor caa=new VntCrear_A_Autor();
-        try{
+    private void crearArticulo() {
+        VntCrear_A_Articulo vaa = new VntCrear_A_Articulo();
+        try {
+            vaa.setVisisble(true);
+            vaa.setSelection(true);
+            escritorio.add(vaa);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void crearAutor() {
+        VntCrear_A_Autor caa = new VntCrear_A_Autor();
+        try {
             caa.setVisisble(true);
             caa.setSelection(true);
             escritorio.add(caa);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void crearMedico() {
-        VtnCrear_F_Medico vcm=new VtnCrear_F_Medico();
+        VtnCrear_F_Medico vcm = new VtnCrear_F_Medico();
         try {
             vcm.setVisible(true);
             vcm.setSelected(true);
             escritorio.add(vcm);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    private void crearPaciente(){
-        VtnCrear_F_Paciente cp=new VtnCrear_F_Paciente();
+
+    private void crearPaciente() {
+        VtnCrear_F_Paciente cp = new VtnCrear_F_Paciente();
         try {
             cp.setVisible(true);
             cp.setSelected(true);
@@ -492,9 +494,9 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
-    
-    private void crearConsulta(){
-        VtnCrear_F_Consulta cc=new VtnCrear_F_Consulta();
+
+    private void crearConsulta() {
+        VtnCrear_F_Consulta cc = new VtnCrear_F_Consulta();
         try {
             cc.setVisible(true);
             cc.setSelected(true);
@@ -503,9 +505,9 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
-    
-    private void crearJugador(){
-        VtnCrear_E_Jugador vcj=new VtnCrear_E_Jugador();
+
+    private void crearJugador() {
+        VtnCrear_E_Jugador vcj = new VtnCrear_E_Jugador();
         try {
             vcj.setVisible(true);
             vcj.setSelected(true);
@@ -514,9 +516,9 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
-    
-    private void crearEquipo(){
-        VtnCrear_E_Equipo vce=new VtnCrear_E_Equipo();
+
+    private void crearEquipo() {
+        VtnCrear_E_Equipo vce = new VtnCrear_E_Equipo();
         try {
             vce.setVisible(true);
             vce.setSelected(true);
@@ -525,9 +527,9 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
-    
-    private void crearInscripcion(){
-        VtnCrear_E_Inscripcion vci=new VtnCrear_E_Inscripcion();
+
+    private void crearInscripcion() {
+        VtnCrear_E_Inscripcion vci = new VtnCrear_E_Inscripcion();
         try {
             vci.setVisible(true);
             vci.setSelected(true);
@@ -536,7 +538,5 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
-    
-    
 
 }
