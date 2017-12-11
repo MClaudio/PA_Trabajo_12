@@ -17,6 +17,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+
 public class VtnPrincipal extends JFrame implements ActionListener {
 
     private JDesktopPane escritorio;
@@ -308,10 +309,13 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         switch (e.getActionCommand()) {
             //Inicio crear Menu 1 Programa 1
             case "item1Submenu1Menu1": //caso 1
+                crearRevista();
                 break;
             case "item2Submenu1Menu1": //caso 2
+                crearArticulo();
                 break;
             case "item3Submenu1Menu1": //caso 3
+                crearAutor();
                 break;
 
             //Inicio listar Menu 1 Programa 1
@@ -434,7 +438,40 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         }
 
     }
+    
+    private void crearRevista(){
+        VntCrear_A_Revista car=new VntCrear_A_Revista();
+        try{
+            car.setVisible(true);
+            car.setSelected(true);
+            escritorio.add(car);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    private void crearArticulo(){
+        VntCrear_A_Articulo vaa=new VntCrear_A_Articulo();
+        try{
+            vaa.setVisisble(true);
+            vaa.setSelection(true);
+            escritorio.add(vaa);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
+    private void crearAutor(){
+        VntCrear_A_Autor caa=new VntCrear_A_Autor();
+        try{
+            caa.setVisisble(true);
+            caa.setSelection(true);
+            escritorio.add(caa);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     private void crearMedico() {
         VtnCrear_F_Medico vcm=new VtnCrear_F_Medico();
         try {
