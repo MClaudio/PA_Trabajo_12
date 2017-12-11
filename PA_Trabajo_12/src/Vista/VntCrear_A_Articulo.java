@@ -26,7 +26,7 @@ public class VntCrear_A_Articulo extends JInternalFrame implements ActionListene
         setTitle("");
         setClosable(true);
         setMaximizable(true);
-        setSize(300,200);
+        setSize(400,200);
         
         JPanel panel=new JPanel();
         panel.setLayout(new GridBagLayout());
@@ -36,22 +36,36 @@ public class VntCrear_A_Articulo extends JInternalFrame implements ActionListene
         titulo=new JTextField(15);
         panel.add(titulo);
         
-        panel.add(new JLabel("Abstract"));
+        abc.gridx=0;
+        abc.gridy=1;
+        panel.add(new JLabel("Abstract"),abc);
+        abc.gridx=1;
+        abc.gridy=1;
         abstrat=new JTextField(15);
-        panel.add(abstrat);
+        panel.add(abstrat,abc);
         
-        panel.add(new JLabel("Pagina de Inicio"));
+        abc.gridx=0;
+        abc.gridy=2;
+        panel.add(new JLabel("Pagina de Inicio"),abc);
+        abc.gridx=1;
+        abc.gridy=2;
         paginaInicio=new JTextField(5);
-        panel.add(paginaInicio);
+        panel.add(paginaInicio, abc);
         
-        panel.add(new JLabel("Pagina Fin"));
+        abc.gridx=0;
+        abc.gridy=3;
+        panel.add(new JLabel("Pagina Fin"),abc);
+        abc.gridx=1;
+        abc.gridy=3;
         paginaFin=new JTextField(5);
-        panel.add(paginaFin);
+        panel.add(paginaFin,abc);
         
+        abc.gridx=1;
+        abc.gridy=4;
         JButton btnGuardar=new JButton("Guardar"); 
         btnGuardar.addActionListener(this);
         btnGuardar.setActionCommand("btnGuardar");
-        panel.add(btnGuardar);
+        panel.add(btnGuardar,abc);
         
         getContentPane().add(panel);
     }
