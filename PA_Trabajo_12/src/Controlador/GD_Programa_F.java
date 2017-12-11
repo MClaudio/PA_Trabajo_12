@@ -46,9 +46,13 @@ public class GD_Programa_F {
     }
 
     public List<Doctor> leeDatosMedico() throws Exception {
-        Doctor doctor = new Doctor();
+        
         String linea = "";
         String palabra = "";
+        boolean datoNombre = true;
+        boolean datoApellido = false;
+        boolean datoCedula = false;
+        boolean datoEspecialidad = false;
 
         if (archivo.exists() && archivo.isFile()) {
 
@@ -56,47 +60,47 @@ public class GD_Programa_F {
             BufferedReader lectura = new BufferedReader(file);
 
             while (linea != null) {
-                boolean datoNombre = true;
-                boolean datoApellido = false;
-                boolean datoCedula = false;
-                boolean datoEspecialidad = false;
+
                 linea = lectura.readLine();
                 if (linea != null) {
+                    Doctor doctor = new Doctor();
                     for (int i = 0; i < linea.length(); i++) {
                         char caracter = linea.charAt(i);
                         if (caracter != '|') {
                             palabra += caracter;
                         }
                         else {
-                            if (datoNombre==true) {
+                            if (datoNombre == true && !palabra.equals("")) {
                                 doctor.setNombre(palabra);
-                                System.out.println("Nombre: "+palabra);
+                                palabra = "";
+                                System.out.println("Nombre: " + palabra);
                                 datoNombre = false;
-                                //datoApellido = true;
+                                datoApellido = true;
                             }
-                            if (datoApellido==true) {
+                            if (datoApellido == true && !palabra.equals("")) {
                                 doctor.setApellido(palabra);
-                                System.out.println("Apelldo: "+palabra);
+                                palabra = "";
+                                System.out.println("Apelldo: " + palabra);
                                 datoApellido = false;
-                                //datoCedula = true;
+                                datoCedula = true;
                             }
-                            if (datoCedula==true) {
+                            if (datoCedula == true && !palabra.equals("")) {
                                 doctor.setCedula(palabra);
+                                palabra = "";
                                 datoCedula = false;
-                                //datoEspecialidad = true;
+                                datoEspecialidad = true;
                             }
-                            if (datoEspecialidad==true) {
+                            if (datoEspecialidad == true && !palabra.equals("")) {
                                 doctor.setEspecialidad(palabra);
+                                palabra = "";
                                 datoEspecialidad = false;
-                                datoNombre = false;
-                                
+                                datoNombre = true;
                             }
 
-                            doctores.add(doctor);
                             //System.out.print("[" + palabra + "]");
-                            palabra = "";
                         }
                     }
+                    doctores.add(doctor);
                 }
             }
             file.close();
