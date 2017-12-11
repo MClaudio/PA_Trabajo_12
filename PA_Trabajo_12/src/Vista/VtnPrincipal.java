@@ -119,7 +119,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         //Fin Menu 2
 
         //Inicio Menu 3
-        JMenu menu3 = new JMenu("Menu 3");
+        JMenu menu3 = new JMenu("Programa  C");
         JMenu sub1Menu3 = new JMenu("Crear");
 
         JMenuItem item1Submenu1Menu3 = new JMenuItem("Submenu 1");
@@ -161,7 +161,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         //Fin Menu 3
 
         //Inicio Menu 4
-        JMenu menu4 = new JMenu("Menu 4");
+        JMenu menu4 = new JMenu("Programa D");
         JMenu sub1Menu4 = new JMenu("Crear");
 
         JMenuItem item1Submenu1Menu4 = new JMenuItem("Submenu 1");

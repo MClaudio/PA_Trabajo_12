@@ -15,11 +15,23 @@ public class GD_Programa_A {
         
     }
     
-    public void agregarArticulo(){
+    public void agregarArticulo(String titulo, String abstact, int paginaInicio, int paginaFin){
         
     }
     
-    public void agregarAutor(){
+    public void agregarAutor(int codigo, String nombre, int anioNacimiento, String nacionalidad){
+        
+    }
+    
+    public void listarRevista(){
+        
+    }
+    
+    public void listarArticulo(){
+        
+    }
+    
+    public void listarAutor(){
         
     }
 }
