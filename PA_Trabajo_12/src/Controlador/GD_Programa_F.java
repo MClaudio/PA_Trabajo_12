@@ -22,11 +22,11 @@ public class GD_Programa_F {
     public GD_Programa_F(String pathname) {
         doctores = new ArrayList<Doctor>();
         pacientes = new ArrayList<Paciente>();
-        consultas = new ArrayList<Consulta>(); 
+        consultas = new ArrayList<Consulta>();
 
         archivo = new File(pathname);
     }
- 
+
     public void creaMedico(String especialidad, String cedula, String nombre, String apellido) throws Exception {
         System.out.println(archivo.getAbsolutePath());
 
@@ -45,52 +45,53 @@ public class GD_Programa_F {
 
     }
 
-
     public List<Doctor> leeDatosMedico() throws Exception {
         Doctor doctor = new Doctor();
         String linea = "";
         String palabra = "";
-        
+
         if (archivo.exists() && archivo.isFile()) {
-            boolean datoNombre = true;
-            boolean datoApellido = false;
-            boolean datoCedula = false;
-            boolean datoEspecialidad = false;
-            
+
             FileReader file = new FileReader(archivo);
             BufferedReader lectura = new BufferedReader(file);
 
             while (linea != null) {
+                boolean datoNombre = true;
+                boolean datoApellido = false;
+                boolean datoCedula = false;
+                boolean datoEspecialidad = false;
                 linea = lectura.readLine();
                 if (linea != null) {
-
                     for (int i = 0; i < linea.length(); i++) {
                         char caracter = linea.charAt(i);
                         if (caracter != '|') {
                             palabra += caracter;
                         }
                         else {
-                            if (datoNombre) {
+                            if (datoNombre==true) {
                                 doctor.setNombre(palabra);
+                                System.out.println("Nombre: "+palabra);
                                 datoNombre = false;
-                                datoApellido = true;
+                                //datoApellido = true;
                             }
-                            if (datoApellido) {
+                            if (datoApellido==true) {
                                 doctor.setApellido(palabra);
+                                System.out.println("Apelldo: "+palabra);
                                 datoApellido = false;
-                                datoCedula = true;
+                                //datoCedula = true;
                             }
-                            if (datoCedula) {
+                            if (datoCedula==true) {
                                 doctor.setCedula(palabra);
                                 datoCedula = false;
-                                datoEspecialidad = true;
+                                //datoEspecialidad = true;
                             }
-                            if (datoEspecialidad) {
+                            if (datoEspecialidad==true) {
                                 doctor.setEspecialidad(palabra);
                                 datoEspecialidad = false;
-                                datoNombre = true;
+                                datoNombre = false;
+                                
                             }
-                            
+
                             doctores.add(doctor);
                             //System.out.print("[" + palabra + "]");
                             palabra = "";
@@ -99,7 +100,7 @@ public class GD_Programa_F {
                 }
             }
             file.close();
-            return doctores; 
+            return doctores;
         }
         else {
             throw new Exception("El archivo no existe");

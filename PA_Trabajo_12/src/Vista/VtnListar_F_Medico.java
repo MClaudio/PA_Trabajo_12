@@ -1,4 +1,3 @@
-
 package Vista;
 
 import Controlador.GD_Programa_F;
@@ -9,37 +8,40 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import Modelo.Programa_F.Doctor; 
+import Modelo.Programa_F.Doctor;
 
 /**
  *
  * @author ClauMldo
- */ 
-public class VtnListar_F_Medico extends JInternalFrame{
+ */
+public class VtnListar_F_Medico extends JInternalFrame {
+
     private JTable tlbDoctores;
     private JPanel panel;
     private GD_Programa_F gdF;
 
     public VtnListar_F_Medico() {
         initComponets();
-        gdF=new GD_Programa_F("src/Archivos/Programa_F/Medicos.txt");
     }
-    
-    public void initComponets(){
+
+    public void initComponets() {
         setTitle("Listar Doctores");
         setClosable(true);
         setMaximizable(true);
-        setSize(300, 200);
-        
-        panel=new JPanel();
+        setSize(400, 300);
+
+        panel = new JPanel();
         panel.setLayout(new BorderLayout());
         initTable();
     }
-    
-    public void initTable(){
+
+    public void initTable() {
         try {
+            gdF = new GD_Programa_F("src/Archivos/Programa_F/Medicos.txt");
+
             String[] cabezera = {"#", "Nombre", "Apellido", "Cedula", "Especialidad"};
-            List<Doctor> doc=gdF.leeDatosMedico();
+
+            List<Doctor> doc = gdF.leeDatosMedico();
             String[][] datos = new String[doc.size()][cabezera.length];
             for (int i = 0; i < doc.size(); i++) {
                 Doctor get = doc.get(i);
@@ -52,12 +54,13 @@ public class VtnListar_F_Medico extends JInternalFrame{
             }
             tlbDoctores = new JTable(datos, cabezera);
             JScrollPane scroll = new JScrollPane(tlbDoctores);
-             panel.add(scroll, BorderLayout.CENTER);
-            
+            panel.add(scroll, BorderLayout.CENTER);
+            getContentPane().add(panel);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Error: Algunos datos no an sido ingresados.", e.getMessage(),
                     JOptionPane.ERROR_MESSAGE);
-        } 
+        }
     }
 }
