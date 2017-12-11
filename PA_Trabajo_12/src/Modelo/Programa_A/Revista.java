@@ -9,7 +9,7 @@ public class Revista {
     
     private List<Articulo> articulos;
     private String isdn;
-    private int numeroEdicion;
+    private String numeroEdicion;
     private String nombre;
     private String idioma;
     
@@ -34,11 +34,11 @@ public class Revista {
         this.isdn = isdn;
     }
 
-    public int getNumeroEdicion() {
+    public String getNumeroEdicion() {
         return numeroEdicion;
     }
 
-    public void setNumeroEdicion(int numeroEdicion) {
+    public void setNumeroEdicion(String numeroEdicion) {
         this.numeroEdicion = numeroEdicion;
     }
 

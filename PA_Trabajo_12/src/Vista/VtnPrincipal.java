@@ -20,7 +20,6 @@ public class VtnPrincipal extends JFrame implements ActionListener {
     private JDesktopPane escritorio;
 
     public VtnPrincipal() throws HeadlessException {
-        //GD_Programa_F gdProgramaF = new GD_Programa_F();
         initComponents();
     }
 
@@ -57,17 +56,17 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
         JMenu sub2Menu1 = new JMenu("Listar");
 
-        JMenuItem item1Submenu2Menu1 = new JMenuItem("Submenu 1");
+        JMenuItem item1Submenu2Menu1 = new JMenuItem("Listar Revista");
         item1Submenu2Menu1.addActionListener(this);
         item1Submenu2Menu1.setActionCommand("item1Submenu2Menu1"); //caso 4
         sub2Menu1.add(item1Submenu2Menu1);
 
-        JMenuItem item2Submenu2Menu1 = new JMenuItem("Submenu 2");
+        JMenuItem item2Submenu2Menu1 = new JMenuItem("Listar Articulo");
         item2Submenu2Menu1.addActionListener(this);
         item2Submenu2Menu1.setActionCommand("item2Submenu2Menu1"); //caso 5
         sub2Menu1.add(item2Submenu2Menu1);
 
-        JMenuItem item3Submenu2Menu1 = new JMenuItem("Submenu 3");
+        JMenuItem item3Submenu2Menu1 = new JMenuItem("Listar Autor");
         item3Submenu2Menu1.addActionListener(this);
         item3Submenu2Menu1.setActionCommand("item3Submenu2Menu1"); //caso 6
         sub2Menu1.add(item3Submenu2Menu1);
@@ -317,6 +316,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
             //Inicio listar Menu 1 Programa 1
             case "item1Submenu2Menu1": //caso 4
+                listarRevista();
                 break;
             case "item2Submenu2Menu1": //caso 5
                 break;
@@ -452,6 +452,18 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void listarRevista(){
+        VntListar_A_Revista var=new VntListar_A_Revista();
+        try{
+            var.setVisible(true);
+            var.setSelected(true);
+            escritorio.add(var);
+        }catch(Exception e){
+           e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
         }
     }
 

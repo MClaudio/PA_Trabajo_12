@@ -1,5 +1,6 @@
 package Vista;
 
+import Controlador.GD_Programa_A;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -7,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -71,19 +73,26 @@ public class VntCrear_A_Revista extends JInternalFrame implements ActionListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("btnGuardar")) {
+            btnGuardar();
+        }/*
         String comando=e.getActionCommand();
         switch(comando){
-            case "btnGuradar":
+            case "btnGuardar":
                 btnGuardar();
                 break;
-        }
+        }*/
     }
     
     public void btnGuardar(){
         try{
+            GD_Programa_A gdA=new GD_Programa_A("src/Archivos/Programa_A/Revista.txt");
+           
+            gdA.agragarRevista(Isdn.getText(), numeroEdicion.getText(), nombre.getText(), idioma.getText());
             
+            JOptionPane.showMessageDialog(this,"Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){
-            
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
