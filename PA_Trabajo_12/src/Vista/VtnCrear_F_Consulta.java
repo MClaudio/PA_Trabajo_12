@@ -137,9 +137,9 @@ public class VtnCrear_F_Consulta extends JInternalFrame implements ActionListene
             if (doctores.getSelectedItem() == null || pacientes.getSelectedItem() == null) {
                 throw new Exception("La lista de doctores o pacientes esta vacia.");
             }
-            if (gdF.verificarConsulta((String) doctores.getSelectedItem(), (String) pacientes.getSelectedItem())) {
-                throw new Exception("El paciente ya tiene una cita con el doctor selecionado");
-            }
+            /*if (gdF.verificarConsulta(txtFecha.getText(), (String) pacientes.getSelectedItem())) {
+            throw new Exception("El paciente ya tiene una cita con el doctor selecionado en la fecha propuesta.");
+            }*/
 
             gdF.creaConsulta(txtFecha.getText(), txtHora.getText(), (String) doctores.getSelectedItem(), (String) pacientes.getSelectedItem());
 

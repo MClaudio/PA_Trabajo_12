@@ -305,11 +305,12 @@ public class GD_Programa_F {
         }
     }
 
-    public boolean verificarConsulta(String doctor, String paciente) throws Exception {
+    public boolean verificarConsulta(String fecha, String paciente) throws Exception {
         if (archivo.exists()) {
             String palabra = "";
             String linea = "";
-            boolean doc = false;
+            boolean dia = false;
+            String fech="";
 
             FileReader file = new FileReader(archivo);
             BufferedReader lectura = new BufferedReader(file);
@@ -322,12 +323,11 @@ public class GD_Programa_F {
                             palabra += caracter;
                         }
                         else {
-                            if (palabra.equals(doctor)) {
-                                doc = true;
+                            if (palabra.equals(fecha)) {
+                                dia = true;
                             }
-                            if (doc == true && palabra.equals(paciente)) {
+                            if (dia == true && palabra.equals(paciente)) {
                                 return true;
-
                             }
                             palabra = "";
                         }

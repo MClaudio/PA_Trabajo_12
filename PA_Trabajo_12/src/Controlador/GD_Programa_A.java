@@ -127,7 +127,7 @@ public class GD_Programa_A {
             file.close();
             return revistas;
         }else{
-            throw new Exception("El archivo no existe");
+            throw new Exception("El archivo no existe.");
         }
     }
     
