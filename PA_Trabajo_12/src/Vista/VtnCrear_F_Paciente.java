@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Controlador.GD_Programa_F;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -17,7 +18,8 @@ public class VtnCrear_F_Paciente extends JInternalFrame implements ActionListene
     private JTextField txtCedula;
     private JTextField txtNombre;
     private JTextField txtApellido;
-    private JTextField txtEspecialidad;
+    private JTextField txtEdad;
+    private GD_Programa_F gdF;
 
     public VtnCrear_F_Paciente() {
         initComponets();
@@ -25,7 +27,7 @@ public class VtnCrear_F_Paciente extends JInternalFrame implements ActionListene
     
     
    public void initComponets(){
-        setTitle("Crear Doctor");
+        setTitle("Crear Paciente");
         setClosable(true);
         setMaximizable(true);
         setSize(300, 200);
@@ -59,8 +61,8 @@ public class VtnCrear_F_Paciente extends JInternalFrame implements ActionListene
         panel.add(new JLabel("Edad:"), gbc);
         gbc.gridx=1;
         gbc.gridy=3;
-        txtEspecialidad=new JTextField(5);
-        panel.add(txtEspecialidad, gbc);
+        txtEdad=new JTextField(5);
+        panel.add(txtEdad, gbc);
         
         
         gbc.gridx=1;
@@ -83,8 +85,30 @@ public class VtnCrear_F_Paciente extends JInternalFrame implements ActionListene
 
     private void btnGuardar() {
         try {
+            gdF=new GD_Programa_F("src/Archivos/Programa_F/Pacientes.txt");
+            if (txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtCedula.getText().equals("") || txtEdad.getText().equals("")) {
+                throw new Exception("Deve llenar todos los campos.");
+            }
+            if (!gdF.validNumeros(txtCedula.getText())) {
+                throw new Exception("El campo cedula debe contener numeros.");
+            }
+            gdF.validaCedula(txtCedula.getText());
+            
+            if (!gdF.validNumeros(txtEdad.getText())) {
+                throw new Exception("El campo edad debe contener numeros.");
+            }
+            
+            gdF.verificarDuplicados(txtCedula.getText());
+            
+            gdF.creaPaciente(txtNombre.getText(), txtApellido.getText(), txtCedula.getText(), Integer.parseInt(txtEdad.getText()));
             
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
+            
+            txtNombre.setText("");
+            txtApellido.setText("");
+            txtCedula.setText("");
+            txtEdad.setText("");
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

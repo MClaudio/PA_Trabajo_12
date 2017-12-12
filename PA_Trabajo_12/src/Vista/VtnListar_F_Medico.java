@@ -28,7 +28,7 @@ public class VtnListar_F_Medico extends JInternalFrame {
         setTitle("Listar Doctores");
         setClosable(true);
         setMaximizable(true);
-        setSize(400, 300);
+        setSize(650, 500);
 
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -37,22 +37,21 @@ public class VtnListar_F_Medico extends JInternalFrame {
 
     public void initTable() {
         try {
-            gdF = new GD_Programa_F("src/Archivos/Programa_F/Medicos.txt");
+            gdF = new GD_Programa_F();
 
-            String[] cabezera = {"#", "Nombre", "Apellido", "Cedula", "Especialidad"};
+            String[] cabecera = {"#", "Nombre", "Apellido", "Cedula", "Especialidad"};
 
-            List<Doctor> doc = gdF.leeDatosMedico();
-            String[][] datos = new String[doc.size()][cabezera.length];
+            List<Doctor> doc = gdF.leeDatosMedico("src/Archivos/Programa_F/Medicos.txt");
+            String[][] datos = new String[doc.size()][cabecera.length];
             for (int i = 0; i < doc.size(); i++) {
                 Doctor get = doc.get(i);
-                int j = i;
-                datos[j][0] = "" + (j + 1);
-                datos[j][1] = get.getNombre();
-                datos[j][2] = get.getApellido();
-                datos[j][3] = get.getCedula();
-                datos[j][4] = get.getEspecialidad();
+                datos[i][0] = "" + (i + 1);
+                datos[i][1] = get.getNombre();
+                datos[i][2] = get.getApellido();
+                datos[i][3] = get.getCedula();
+                datos[i][4] = get.getEspecialidad();
             }
-            tlbDoctores = new JTable(datos, cabezera);
+            tlbDoctores = new JTable(datos, cabecera);
             JScrollPane scroll = new JScrollPane(tlbDoctores);
             panel.add(scroll, BorderLayout.CENTER);
             getContentPane().add(panel);

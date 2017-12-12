@@ -271,12 +271,12 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         item1Submenu2Menu6.setActionCommand("item1Submenu2Menu6"); //caso 34
         sub2Menu6.add(item1Submenu2Menu6);
 
-        JMenuItem item2Submenu2Menu6 = new JMenuItem("Submenu 2");
+        JMenuItem item2Submenu2Menu6 = new JMenuItem("Listar Pacientes");
         item2Submenu2Menu6.addActionListener(this);
         item2Submenu2Menu6.setActionCommand("item2Submenu2Menu6"); //caso 35
         sub2Menu6.add(item2Submenu2Menu6);
 
-        JMenuItem item3Submenu2Menu6 = new JMenuItem("Submenu 3");
+        JMenuItem item3Submenu2Menu6 = new JMenuItem("Listar Consultas");
         item3Submenu2Menu6.addActionListener(this);
         item3Submenu2Menu6.setActionCommand("item3Submenu2Menu6"); //caso 36
         sub2Menu6.add(item3Submenu2Menu6);
@@ -412,8 +412,10 @@ public class VtnPrincipal extends JFrame implements ActionListener {
                 listrMedicos();
                 break;
             case "item2Submenu2Menu6": //caso 35
+                listarPacientes();
                 break;
             case "item3Submenu2Menu6": //caso 36
+                listarConsulta();
                 break;
 
             //Inicio Menu Opciones   
@@ -525,6 +527,16 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
+    
+    private void listarPacientes() {
+        VtnListar_F_Paciente vlp = new VtnListar_F_Paciente();
+        try {
+            vlp.setVisible(true);
+            vlp.setSelected(true);
+            escritorio.add(vlp);
+        } catch (Exception e) {
+        }
+    }
 
     private void crearConsulta() {
         VtnCrear_F_Consulta cc = new VtnCrear_F_Consulta();
@@ -532,6 +544,17 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             cc.setVisible(true);
             cc.setSelected(true);
             escritorio.add(cc);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void listarConsulta() {
+        VtnListar_F_Consulta vlc = new VtnListar_F_Consulta();
+        try {
+            vlc.setVisible(true);
+            vlc.setSelected(true);
+            escritorio.add(vlc);
         } catch (Exception e) {
             e.printStackTrace();
         }
