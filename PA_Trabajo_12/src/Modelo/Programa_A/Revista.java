@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Revista {
     
-    private List<Articulo> articulos;
+    private Articulo articulos;
     private String isdn;
     private String numeroEdicion;
     private String nombre;
@@ -15,14 +15,14 @@ public class Revista {
     
     
     public Revista(){
-        articulos=new ArrayList<Articulo>();
+        articulos=new Articulo();
     }
 
-    public List<Articulo> getArticulos() {
+    public Articulo getArticulos() {
         return articulos;
     }
 
-    public void setArticulos(List<Articulo> articulos) {
+    public void setArticulos(Articulo articulos) {
         this.articulos = articulos;
     }
 
@@ -56,9 +56,5 @@ public class Revista {
 
     public void setIdioma(String idioma) {
         this.idioma = idioma;
-    }
- 
-    public void addArticulo(Articulo articulo){
-        articulos.add(articulo);
     }
 }

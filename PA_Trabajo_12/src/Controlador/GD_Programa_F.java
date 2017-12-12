@@ -105,7 +105,7 @@ public class GD_Programa_F {
         }
         else {
             throw new Exception("El archivo no existe");
-        }
+        } 
     }
 
     public void creaPaciente(String nombre, String apellido, String cedula, int edad) throws IOException, Exception {

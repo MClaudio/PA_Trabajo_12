@@ -2,7 +2,7 @@
 package Vista;
 
 import Controlador.GD_Programa_A;
-import Modelo.Programa_A.Revista;
+import Modelo.Programa_A.Articulo;
 import java.awt.BorderLayout;
 import java.util.List;
 import javax.swing.JInternalFrame;
@@ -11,17 +11,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class VntListar_A_Revista extends JInternalFrame{
+public class VntListar_A_Articulo extends JInternalFrame {
     
-    private JTable tblRevista;
+    private JTable tblArticulo;
     private JPanel panel;
     private GD_Programa_A gdA;
     
-    public VntListar_A_Revista(){
-        initcomponent();
+    public VntListar_A_Articulo(){
+        initcomponentes();
     }
     
-    public void initcomponent(){
+    public void initcomponentes(){
         setTitle("Listar Revistas");
         setClosable(true);
         setMaximizable(true);
@@ -35,27 +35,27 @@ public class VntListar_A_Revista extends JInternalFrame{
     public void initTable(){
         try{
             gdA=new GD_Programa_A();
-            String[] cabezera = {"#", "ISBN", "Numero de Edicion", "Nombre de Revista", "Idioma", "Articulo"};
-            List<Revista> re=gdA.listarRevista("src/Archivos/Programa_A/Revista.txt");
-            String[][] datos=new String[re.size()][cabezera.length];
-            for(int i=0; i<re.size();i++){
-                Revista get=re.get(i);
+            String[] cabecera={"#", "Titulo", "Abstract", "Pagina de Inicio", "Pagina de Fin", "Autor"};
+            List<Articulo> ar=gdA.listarArticulo("src/Archivos/Programa_A/Articulo.txt");
+            String[][]datos=new String [ar.size()][cabecera.length];
+            for(int i=0; i<ar.size();i++){
+                Articulo get=ar.get(i);
                 int j=i;
                 datos[j][0]=""+(j+1);
-                datos[j][1]=get.getIsdn();
-                datos[j][2]=get.getNumeroEdicion();
-                datos[j][3]=get.getNombre();
-                datos[j][4]=get.getIdioma();    
-                datos[j][5]=get.getArticulos().getTitulo();
+                datos[j][1]=get.getTitulo();
+                datos[j][2]=get.getAbstrac();
+                datos[j][3]=get.getPaginaInicio();
+                datos[j][4]=get.getPaginaFin();
+                datos[j][5]=get.getAutores().getNombre();
             }
-            tblRevista=new JTable(datos, cabezera);
-            JScrollPane scroll = new JScrollPane(tblRevista);
+            tblArticulo=new JTable(datos, cabecera);
+            JScrollPane scroll = new JScrollPane(tblArticulo);
             panel.add(scroll, BorderLayout.CENTER);
             getContentPane().add(panel);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,
             "Error: Algunos datos no an sido ingresados.", e.getMessage(),
-            JOptionPane.ERROR_MESSAGE);   
+            JOptionPane.ERROR_MESSAGE); 
         }
     }
 }

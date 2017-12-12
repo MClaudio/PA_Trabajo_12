@@ -9,11 +9,7 @@ public class Articulo {
     private String abstrac;
     private String paginaInicio;
     private String paginaFin;	
-    private List<Autor>autores;
-
-    public Articulo() {
-        autores=new ArrayList<Autor>();
-    }
+    private Autor autores;
 
     public String getTitulo() {
         return titulo;
@@ -47,11 +43,11 @@ public class Articulo {
         this.paginaFin = paginaFin;
     }
 
-    public List<Autor> getAutores() {
+    public Autor getAutores() {
         return autores;
     }
 
-    public void setAutores(List<Autor> autores) {
+    public void setAutores(Autor autores) {
         this.autores = autores;
     }
     
