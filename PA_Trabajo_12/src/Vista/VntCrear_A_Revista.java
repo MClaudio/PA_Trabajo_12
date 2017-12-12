@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ public class VntCrear_A_Revista extends JInternalFrame implements ActionListener
     private JTextField numeroEdicion;
     private JTextField nombre;
     private JTextField idioma;
+    private JComboBox articulos;
 
     public VntCrear_A_Revista() {
         implement();
@@ -61,8 +63,16 @@ public class VntCrear_A_Revista extends JInternalFrame implements ActionListener
         idioma=new JTextField(10);
         panel.add(idioma,abc);
         
+        abc.gridx=0;
+        abc.gridy=4;
+        panel.add(new JLabel("Articulo"),abc);
         abc.gridx=1;
         abc.gridy=4;
+        articulos=new JComboBox();
+        panel.add(articulos,abc);
+        
+        abc.gridx=1;
+        abc.gridy=5;
         JButton btnGuardar=new JButton("Guardar"); 
         btnGuardar.addActionListener(this);
         btnGuardar.setActionCommand("btnGuardar");
@@ -75,13 +85,7 @@ public class VntCrear_A_Revista extends JInternalFrame implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("btnGuardar")) {
             btnGuardar();
-        }/*
-        String comando=e.getActionCommand();
-        switch(comando){
-            case "btnGuardar":
-                btnGuardar();
-                break;
-        }*/
+        }
     }
     
     public void btnGuardar(){

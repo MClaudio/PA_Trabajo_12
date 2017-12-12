@@ -35,7 +35,7 @@ public class VntListar_A_Revista extends JInternalFrame{
     public void initTable(){
         try{
             gdA=new GD_Programa_A("src/Archivos/Programa_A/Revista.txt");
-            String[] cabezera = {"#", "ISBN", "Numero de Edicion", "Nombre de Revista", "Idioma"};
+            String[] cabezera = {"#", "ISBN", "Numero de Edicion", "Nombre de Revista", "Idioma", "Articulo"};
             List<Revista> re=gdA.listarRevista();
             String[][] datos=new String[re.size()][cabezera.length];
             for(int i=0; i<re.size();i++){
@@ -45,7 +45,8 @@ public class VntListar_A_Revista extends JInternalFrame{
                 datos[j][1]=get.getIsdn();
                 datos[j][2]=get.getNumeroEdicion();
                 datos[j][3]=get.getNombre();
-                datos[j][4]=get.getIdioma();               
+                datos[j][4]=get.getIdioma();    
+                datos[j][5]=get.getArticulos().get(i).getTitulo();
             }
             tblRevista=new JTable(datos, cabezera);
             JScrollPane scroll = new JScrollPane(tblRevista);

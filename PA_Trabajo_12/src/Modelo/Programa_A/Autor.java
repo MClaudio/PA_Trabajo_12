@@ -3,23 +3,20 @@ package Modelo.Programa_A;
 
 public class Autor {
 
-    private int codigo;
+    private String codigo;
     private String nombre;
-    private int anioNacimiento;
-    private String nacionalidad;    
-
-    public Autor(int codigo, String nombre, int anioNacimiento, String nacionalidad) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.anioNacimiento = anioNacimiento;
-        this.nacionalidad = nacionalidad;
+    private String anioNacimiento;
+    private String nacionalidad; 
+    
+    public Autor(){
+        
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -31,11 +28,11 @@ public class Autor {
         this.nombre = nombre;
     }
 
-    public int getAnioNacimiento() {
+    public String getAnioNacimiento() {
         return anioNacimiento;
     }
 
-    public void setAnioNacimiento(int anioNacimiento) {
+    public void setAnioNacimiento(String anioNacimiento) {
         this.anioNacimiento = anioNacimiento;
     }
 
@@ -45,13 +42,5 @@ public class Autor {
 
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
-    }
-
-    @Override
-    public String toString() {
-        return "Autor{" + "codigo=" + codigo + ", nombre=" + nombre + ", anioNacimiento=" 
-                + anioNacimiento + ", nacionalidad=" + nacionalidad + '}';
-    }
-    
-    
+    }    
 }

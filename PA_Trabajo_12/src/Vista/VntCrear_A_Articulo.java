@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ public class VntCrear_A_Articulo extends JInternalFrame implements ActionListene
     private JTextField abstrat;
     private JTextField paginaInicio;
     private JTextField paginaFin;
+    private JComboBox autor;
     
     public VntCrear_A_Articulo(){
         implement();
@@ -60,8 +62,16 @@ public class VntCrear_A_Articulo extends JInternalFrame implements ActionListene
         paginaFin=new JTextField(5);
         panel.add(paginaFin,abc);
         
+        abc.gridx=0;
+        abc.gridy=4;
+        panel.add(new JLabel("Autor"),abc);
         abc.gridx=1;
         abc.gridy=4;
+        autor=new JComboBox();
+        panel.add(autor,abc);
+        
+        abc.gridx=1;
+        abc.gridy=5;
         JButton btnGuardar=new JButton("Guardar"); 
         btnGuardar.addActionListener(this);
         btnGuardar.setActionCommand("btnGuardar");

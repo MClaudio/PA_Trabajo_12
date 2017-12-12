@@ -37,20 +37,20 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
         JMenu sub1Menu1 = new JMenu("Crear");
 
-        JMenuItem item1Submenu1Menu1 = new JMenuItem("Revista");
-        item1Submenu1Menu1.addActionListener(this);
-        item1Submenu1Menu1.setActionCommand("item1Submenu1Menu1"); //caso 1
-        sub1Menu1.add(item1Submenu1Menu1);
-
-        JMenuItem item2Submenu1Menu1 = new JMenuItem("Articulo");
-        item2Submenu1Menu1.addActionListener(this);
-        item2Submenu1Menu1.setActionCommand("item2Submenu1Menu1"); //caso 2
-        sub1Menu1.add(item2Submenu1Menu1);
-
         JMenuItem item3Submenu1Menu1 = new JMenuItem("Autor");
         item3Submenu1Menu1.addActionListener(this);
         item3Submenu1Menu1.setActionCommand("item3Submenu1Menu1"); //caso 3
         sub1Menu1.add(item3Submenu1Menu1);
+        
+        JMenuItem item2Submenu1Menu1 = new JMenuItem("Articulo");
+        item2Submenu1Menu1.addActionListener(this);
+        item2Submenu1Menu1.setActionCommand("item2Submenu1Menu1"); //caso 2
+        sub1Menu1.add(item2Submenu1Menu1);
+        
+        JMenuItem item1Submenu1Menu1 = new JMenuItem("Revista");
+        item1Submenu1Menu1.addActionListener(this);
+        item1Submenu1Menu1.setActionCommand("item1Submenu1Menu1"); //caso 1
+        sub1Menu1.add(item1Submenu1Menu1);
 
         menu1.add(sub1Menu1);
 

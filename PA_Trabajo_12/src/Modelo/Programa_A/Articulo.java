@@ -1,18 +1,18 @@
 
 package Modelo.Programa_A;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Articulo {
     private String titulo;
     private String abstrac;
-    private int paginaInicio;
-    private int paginaFin;	
-    private Autor autor;
+    private String paginaInicio;
+    private String paginaFin;	
+    private List<Autor>autores;
 
-    public Articulo(String titulo, String abstrac, int paginaInicio, int paginaFin) {
-        this.titulo = titulo;
-        this.abstrac = abstrac;
-        this.paginaInicio = paginaInicio;
-        this.paginaFin = paginaFin;
+    public Articulo() {
+        autores=new ArrayList<Autor>();
     }
 
     public String getTitulo() {
@@ -31,35 +31,28 @@ public class Articulo {
         this.abstrac = abstrac;
     }
 
-    public int getPaginaInicio() {
+    public String getPaginaInicio() {
         return paginaInicio;
     }
 
-    public void setPaginaInicio(int paginaInicio) {
+    public void setPaginaInicio(String paginaInicio) {
         this.paginaInicio = paginaInicio;
     }
 
-    public int getPaginaFin() {
+    public String getPaginaFin() {
         return paginaFin;
     }
 
-    public void setPaginaFin(int paginaFin) {
+    public void setPaginaFin(String paginaFin) {
         this.paginaFin = paginaFin;
     }
 
-    public Autor getAutor() {
-        return autor;
+    public List<Autor> getAutores() {
+        return autores;
     }
 
-    public void setAutor(Autor autor) {
-        this.autor = autor;
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
     }
-
-    @Override
-    public String toString() {
-        return "Articulo{" + "titulo=" + titulo + ", abstrac=" + abstrac + ", paginaInicio=" + paginaInicio 
-                + ", paginaFin=" + paginaFin + ", autor=" + autor + '}';
-    }
-    
     
 }
