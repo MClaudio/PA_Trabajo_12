@@ -23,7 +23,7 @@ public class VntListar_B_Canton extends JInternalFrame {
     }
     
     public void initcomponent(){
-        setTitle("Listar Revistas");
+        setTitle("Listar Canton");
         setClosable(true);
         setMaximizable(true);
         setSize(600, 500);

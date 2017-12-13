@@ -21,7 +21,7 @@ public class VntListar_B_Provincia extends JInternalFrame {
     }
     
     public void initcomponent(){
-        setTitle("Listar Revistas");
+        setTitle("Listar Provincia");
         setClosable(true);
         setMaximizable(true);
         setSize(600, 500);
@@ -34,7 +34,7 @@ public class VntListar_B_Provincia extends JInternalFrame {
     public void initTable(){
         try{
             gdB=new GD_Programa_B();
-            String[] cabezera = {"#", "ISBN", "Numero de Edicion", "Nombre de Revista", "Idioma"};
+            String[] cabezera = {"#", "Provincia", "Region", "Gobernador", "Pais"};
             List<Provincia> re=gdB.listarProvincia("src/Archivos/Programa_B/Provincia.txt");
             String[][] datos=new String[re.size()][cabezera.length];
             for(int i=0; i<re.size();i++){

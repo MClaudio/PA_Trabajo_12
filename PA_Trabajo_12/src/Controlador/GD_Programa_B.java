@@ -74,9 +74,9 @@ public class GD_Programa_B {
             BufferedReader lectura = new BufferedReader(file);
 
             while (linea != null) {
-                Pais pais = new Pais();
                 linea = lectura.readLine();
                 if (linea != null) {
+                    Pais pais = new Pais();
                     for (int i = 0; i < linea.length(); i++) {
                         char caracter = linea.charAt(i);
                         if (caracter != '|') {
@@ -95,7 +95,7 @@ public class GD_Programa_B {
                                 datoidioma = true;
                             }
                             if (datoidioma == true && !palabra.equals("")) {
-                                pais.setNombrePais(palabra);
+                                pais.setIdioma(palabra);
                                 palabra = "";
                                 datoidioma = false;
                                 datonombreContinente = true;
@@ -153,7 +153,7 @@ public class GD_Programa_B {
                                 datopais = true;
                             }
                             if (datopais == true && !palabra.equals("")) {
-                                List<Pais> pais = listarPais("src/Archivos/Programa_A/Autor.txt");
+                                List<Pais> pais = listarPais("src/Archivos/Programa_B/Pais.txt");
                                 String[] dato = new String[3];
                                 dato = palabra.split("");
                                 for (int j = 0; j < pais.size(); j++) {
@@ -219,12 +219,12 @@ public class GD_Programa_B {
                                 datoprovincias = true;
                             }
                             if (datoprovincias == true && !palabra.equals("")) {
-                                List<Provincia> provincia = listarProvincia("src/Archivos/Programa_A/Autor.txt");
+                                List<Provincia> provincia = listarProvincia("src/Archivos/Programa_B/Provincia.txt");
                                 String[] dato = new String[3];
                                 dato = palabra.split("");
                                 for (int j = 0; j < provincia.size(); j++) {
                                     Provincia get = provincia.get(j);
-                                    if (get.getNombreProvincia().equals(dato[1])) {
+                                    if (get.getNombreProvincia().equals(dato[0])) {
                                         canton.setProvincia(get);
                                     }
                                 }

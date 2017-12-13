@@ -52,7 +52,7 @@ public class VntCrear_B_Pais extends JInternalFrame implements ActionListener {
         
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(new JLabel("Pais"), gbc);
+        panel.add(new JLabel("Idioma"), gbc);
         gbc.gridx = 1;
         gbc.gridy = 2;
         idioma = new JTextField(5);

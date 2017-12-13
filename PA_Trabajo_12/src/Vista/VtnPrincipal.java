@@ -461,7 +461,7 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         }
 
     }
-
+ 
     private void crearRevista() {
         VntCrear_A_Revista cat = new VntCrear_A_Revista();
         try {

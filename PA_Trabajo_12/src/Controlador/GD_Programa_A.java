@@ -119,7 +119,7 @@ public class GD_Programa_A {
                                 datoisbn = true;
                             }
                             if (datoarticulo == true && !palabra.equals("")) {
-                                List<Articulo> articulos = listarArticulo("src/Archivos/Programa_F/Articulo.txt");
+                                List<Articulo> articulos = listarArticulo("src/Archivos/Programa_A/Articulo.txt");
                                 String[] dato = new String[3];
                                 dato = palabra.split(" ");
                                 for (int j = 0; j < articulos.size(); j++) {

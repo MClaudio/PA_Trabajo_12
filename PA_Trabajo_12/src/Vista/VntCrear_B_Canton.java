@@ -88,7 +88,7 @@ public class VntCrear_B_Canton extends JInternalFrame implements ActionListener{
     private void listarProvincia() {
         gdB = new GD_Programa_B();
         try {
-            List<Provincia> provincias = gdB.listarProvincia("src/Archivos/Programa_B/Canton.txt");
+            List<Provincia> provincias = gdB.listarProvincia("src/Archivos/Programa_B/Provincia.txt");
             String[] listPaciente = new String[provincias.size()];
             for (int i = 0; i < provincias.size(); i++) {
                 Provincia get = provincias.get(i);
@@ -105,15 +105,16 @@ public class VntCrear_B_Canton extends JInternalFrame implements ActionListener{
     
     public void btnGuardar(){
         try{
-            gdB=new GD_Programa_B("src/Archivos/Programa_B/Provincia.txt");
+            gdB=new GD_Programa_B("src/Archivos/Programa_B/Canton.txt");
             if (nombreCanton.getText().equals("") || codigoPostal.getText().equals("") || numeroHabitantes.getText().equals("")) {
                 throw new Exception("Porfavor rellene todos los campos");
             }
+            if (provincia1.getSelectedItem() == null) {
+                throw new Exception("La lista de autores esta vacia");
+            }
             gdB.agregarCanton(nombreCanton.getText(), codigoPostal.getText(), numeroHabitantes.getText(), (String) provincia1.getSelectedItem());
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
-            nombreCanton.setText("");
-            codigoPostal.setText("");
-            numeroHabitantes.setText("");
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
  
 public class VntListar_B_Pais extends JInternalFrame{
-    private JTable tblProvincia;
+    private JTable tblPais;
     private JPanel panel;
     private GD_Programa_B gdB;
     
@@ -22,7 +22,7 @@ public class VntListar_B_Pais extends JInternalFrame{
     }
     
     public void initcomponent(){
-        setTitle("Listar Revistas");
+        setTitle("Listar Pais");
         setClosable(true);
         setMaximizable(true);
         setSize(600, 500);
@@ -35,7 +35,7 @@ public class VntListar_B_Pais extends JInternalFrame{
     public void initTable(){
         try{
             gdB=new GD_Programa_B();
-            String[] cabezera = {"#", "ISBN", "Numero de Edicion", "Nombre de Revista", "Idioma"};
+            String[] cabezera = {"#", "Continente", "Pais", "Idioma"};
             List<Pais> re=gdB.listarPais("src/Archivos/Programa_B/Pais.txt");
             String[][] datos=new String[re.size()][cabezera.length];
             for(int i=0; i<re.size();i++){
@@ -45,9 +45,9 @@ public class VntListar_B_Pais extends JInternalFrame{
                 datos[j][1]=get.getNombreContinente();
                 datos[j][2]=get.getNombrePais();
                 datos[j][3]=get.getIdioma();
-            }
-            tblProvincia=new JTable(datos, cabezera);
-            JScrollPane scroll = new JScrollPane(tblProvincia);
+            } 
+            tblPais=new JTable(datos, cabezera);
+            JScrollPane scroll = new JScrollPane(tblPais);
             panel.add(scroll, BorderLayout.CENTER);
             getContentPane().add(panel);
         }catch(Exception e){
