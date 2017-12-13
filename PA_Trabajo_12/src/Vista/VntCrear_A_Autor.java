@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Controlador.GD_Programa_A;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -17,6 +19,7 @@ public class VntCrear_A_Autor extends JInternalFrame implements ActionListener {
     private JTextField nombre;
     private JTextField anioNacimiento;
     private JTextField nacionalidad;
+    private GD_Programa_A gdA;
     
     public VntCrear_A_Autor(){
         implement();
@@ -72,7 +75,26 @@ public class VntCrear_A_Autor extends JInternalFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        if (e.getActionCommand().equals("btnGuardar")) {
+            btnGuardar();
+        }
+    }
+    
+    public void btnGuardar(){
+        try{
+            gdA=new GD_Programa_A("src/Archivos/Programa_A/Autor.txt");
+            if (codigo.getText().equals("") || nombre.getText().equals("") || anioNacimiento.getText().equals("") || nacionalidad.getText().equals("")) {
+                throw new Exception("Porfavor rellene todos los campos");
+            }
+            gdA.agregarAutor(codigo.getText(), nombre.getText(), anioNacimiento.getText(), nacionalidad.getText());
+            JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
+            codigo.setText("");
+            nombre.setText("");
+            anioNacimiento.setText("");
+            nacionalidad.setText("");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
 }

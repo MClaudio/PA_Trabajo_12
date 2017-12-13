@@ -9,12 +9,7 @@ public class Pais {
     private String nombreContinente;
     private String nombrePais;
     private String idioma;
-    private List<Provincia> provincias;
     
-    public Pais(){
-        provincias=new ArrayList<Provincia>();
-    }
-
     public String getNombreContinente() {
         return nombreContinente;
     }
@@ -37,18 +32,5 @@ public class Pais {
 
     public void setIdioma(String idioma) {
         this.idioma = idioma;
-    }
-
-    public List<Provincia> getProvincia() {
-        return provincias;
-    }
-
-    public void setProvincia(List<Provincia> provincia) {
-        this.provincias = provincia;
-    }
-    
-    public void addProvincia(Provincia provincia){
-        provincias.add(provincia);
-    }
-    
+    }  
 }

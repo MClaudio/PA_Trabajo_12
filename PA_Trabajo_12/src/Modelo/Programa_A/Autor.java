@@ -7,10 +7,6 @@ public class Autor {
     private String nombre;
     private String anioNacimiento;
     private String nacionalidad; 
-    
-    public Autor(){
-        
-    }
 
     public String getCodigo() {
         return codigo;

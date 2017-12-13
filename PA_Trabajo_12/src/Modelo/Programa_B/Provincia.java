@@ -8,11 +8,7 @@ public class Provincia {
     private String nombreProvincia;
     private String region;
     private String gobernador;
-    private List<Canton> canton;
-
-    public Provincia(){
-        canton= new ArrayList<Canton>();
-    }
+    private Pais pais;
     
     public String getNombreProvincia() {
         return nombreProvincia;
@@ -38,11 +34,13 @@ public class Provincia {
         this.gobernador = gobernador;
     }   
 
-    public List<Canton> getCanton() {
-        return canton;
+    public Pais getPais() {
+        return pais;
     }
 
-    public void setCanton(List<Canton> canton) {
-        this.canton = canton;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
+
+    
 }

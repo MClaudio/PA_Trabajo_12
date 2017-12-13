@@ -10,7 +10,7 @@ public class Articulo {
     private String paginaInicio;
     private String paginaFin;	
     private Autor autores;
-
+    
     public String getTitulo() {
         return titulo;
     }

@@ -1,10 +1,6 @@
 
 package Modelo.Programa_A;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Revista {
     
     private Articulo articulos;
@@ -13,11 +9,6 @@ public class Revista {
     private String nombre;
     private String idioma;
     
-    
-    public Revista(){
-        articulos=new Articulo();
-    }
-
     public Articulo getArticulos() {
         return articulos;
     }
