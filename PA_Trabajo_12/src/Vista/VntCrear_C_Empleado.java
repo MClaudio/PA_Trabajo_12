@@ -46,7 +46,7 @@ public class VntCrear_C_Empleado extends JInternalFrame implements ActionListene
     public void initComponents() {
         // TODO Auto-generated method stub
 
-        setSize(250, 300);
+        setSize(400, 300);
         setTitle("INGRESAR EMPLEADOS");
         setClosable(true);
         setMaximizable(false);

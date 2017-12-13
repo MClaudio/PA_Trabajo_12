@@ -51,7 +51,7 @@ public class VntCrear_C_Departamento extends JInternalFrame implements ActionLis
     private void initComponents() {
         // TODO Auto-generated method stub
 
-        setSize(250, 300);
+        setSize(400, 300);
         setTitle("INGRESAR DEPARTAMENTOS");
         setClosable(true);
         setMaximizable(false);

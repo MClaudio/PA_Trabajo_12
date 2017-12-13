@@ -47,7 +47,7 @@ public class VntCrear_D_Resultado extends JInternalFrame implements ActionListen
     private void initComponents() {
         // TODO Auto-generated method stub
 
-        setSize(250, 300);
+        setSize(400, 300);
         setTitle("INGRESAR RESULTADOS");
         setClosable(true);
         setMaximizable(false);

@@ -52,7 +52,7 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
     private void initComponents() {
         // TODO Auto-generated method stub
 
-        setSize(250, 300);
+        setSize(400, 300);
         setTitle("INGRESAR ATLETAS");
         setClosable(true);
         setMaximizable(false);

@@ -47,7 +47,7 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
     private void initComponents() {
         // TODO Auto-generated method stub
 
-        setSize(250, 300);
+        setSize(400, 300);
         setTitle("INGRESAR EMPRESAS");
         setClosable(true);
         setMaximizable(false);
