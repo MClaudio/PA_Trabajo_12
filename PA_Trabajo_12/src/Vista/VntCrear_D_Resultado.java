@@ -25,9 +25,9 @@ import javax.swing.JTextField;
  *
  * @author Cristian
  */
-public class VntCrear_D_Resultado  extends JInternalFrame implements ActionListener {
-    
-     private JTextField txtTiempoFinal;
+public class VntCrear_D_Resultado extends JInternalFrame implements ActionListener {
+
+    private JTextField txtTiempoFinal;
     private JTextField txtVelocidad;
     private JTextField txtDistanRecorr;
 
@@ -70,7 +70,7 @@ public class VntCrear_D_Resultado  extends JInternalFrame implements ActionListe
         txtTiempoFinal = new JTextField(5);
         txtVelocidad = new JTextField(5);
         txtDistanRecorr = new JTextField(5);
-       
+
         JPanel panel1 = new JPanel();
         panel1.setLayout(new GridBagLayout());
         panel1.setBorder(BorderFactory.createTitledBorder("Datos Empresa "));
@@ -106,7 +106,6 @@ public class VntCrear_D_Resultado  extends JInternalFrame implements ActionListe
         gbc.gridx = 1;
         gbc.gridy = 2;
         panel1.add(txtDistanRecorr, gbc);
-
 
         JPanel botones = new JPanel();
         botones.setLayout(new FlowLayout());
@@ -150,17 +149,20 @@ public class VntCrear_D_Resultado  extends JInternalFrame implements ActionListe
     private void guardar() {
 
         try {
-            GD_Programa_D gdD= new GD_Programa_D("src/Archivos/Programa_D/Resultado.txt");
+            if (txtTiempoFinal.getText().equals("") || txtVelocidad.getText().equals("") || txtDistanRecorr.getText().equals("")) {
+                throw new Exception("Debe llenar todos los campos.");
+            }
+            GD_Programa_D gdD = new GD_Programa_D("src/Archivos/Programa_D/Resultado.txt");
             gdD.crearResultado(txtTiempoFinal.getText(), txtVelocidad.getText(), txtDistanRecorr.getText());
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
 
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
 
     }
-   
-    
-    
+
 }

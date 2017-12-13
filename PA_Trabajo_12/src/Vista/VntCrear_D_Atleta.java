@@ -40,19 +40,9 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
     private JComboBox<String> resultados;
     private String auxresultados;
     private GD_Programa_D gdD;
-    
-    
 
-    JButton btnGuardar;
-    JButton btnNuevo;
-
-    JLabel etiqueta1;
-    JLabel etiqueta2;
-    JLabel etiqueta3;
-    JLabel etiqueta4;
-    JLabel etiqueta5;
-    JLabel etiqueta6;
-    JLabel etiqueta7;
+    private JButton btnGuardar;
+    private JButton btnNuevo;
 
     public VntCrear_D_Atleta() {
 
@@ -69,7 +59,7 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
         setMaximizable(true);
 
         getContentPane().setLayout(new FlowLayout());
-        
+
         gdD = new GD_Programa_D("src/Archivos/Programa_D/Resultado.txt");
         List<Resultado> result = null;
         try {
@@ -91,13 +81,13 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
         btnNuevo.addActionListener(this);
         btnNuevo.setActionCommand("botonNuevo");
 
-        etiqueta1 = new JLabel("NOMBRE APELLIDO ");
-        etiqueta2 = new JLabel("NUMERO CEDULA ");
-        etiqueta3 = new JLabel("FECHA NACIMIENTO ");
-        etiqueta4 = new JLabel("DIRECCION ");
-        etiqueta5 = new JLabel("ALTURA (cm) ");
-        etiqueta6 = new JLabel("PESO (kg) ");
-        etiqueta7 = new JLabel("RESULTADO (seg)");
+        JLabel etiqueta1 = new JLabel("NOMBRE APELLIDO ");
+        JLabel etiqueta2 = new JLabel("NUMERO CEDULA ");
+        JLabel etiqueta3 = new JLabel("FECHA NACIMIENTO ");
+        JLabel etiqueta4 = new JLabel("DIRECCION ");
+        JLabel etiqueta5 = new JLabel("ALTURA (cm) ");
+        JLabel etiqueta6 = new JLabel("PESO (kg) ");
+        JLabel etiqueta7 = new JLabel("RESULTADO (seg)");
 
         txtNombreApellido = new JTextField(15);
         txtCedula = new JTextField(15);
@@ -150,40 +140,38 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 3;
-        panel1.add( txtDireccion, gbc);
-        
+        panel1.add(txtDireccion, gbc);
+
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 4;
-        panel1.add( etiqueta5, gbc);
-        
+        panel1.add(etiqueta5, gbc);
+
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 4;
-        panel1.add( txtAltura, gbc);
-        
-                
+        panel1.add(txtAltura, gbc);
+
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 5;
-        panel1.add( etiqueta6, gbc);
-        
+        panel1.add(etiqueta6, gbc);
+
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 5;
-        panel1.add( txtPeso, gbc);
-        
+        panel1.add(txtPeso, gbc);
+
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 6;
-        panel1.add( etiqueta7, gbc);
-        
+        panel1.add(etiqueta7, gbc);
+
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 6;
-        panel1.add( resultados, gbc);
-        
-        
+        panel1.add(resultados, gbc);
+
         JPanel botones = new JPanel();
         botones.setLayout(new FlowLayout());
         botones.add(btnGuardar);
@@ -202,7 +190,7 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
         String comando = evt.getActionCommand();
 
         System.out.println("evento boton " + comando);
-        
+
         if (evt.getSource() == resultados) {
             auxresultados = resultados.getSelectedItem().toString();
         }
@@ -225,21 +213,27 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
     }
 
     private void guardar() {
-            
-        
+
         List<Resultado> resultado = null;
         try {
-            resultado = gdD.leerDatosResultado();
-            GD_Programa_D gdD= new GD_Programa_D("src/Archivos/Programa_D/Atleta.txt");
-            Resultado result = gdD.buscarResutado(resultado, auxresultados);
-            gdD.crearAtleta(txtNombreApellido.getText(), txtCedula.getText(), txtFechaNac.getText(),txtDireccion.getText(),txtAltura.getText(),txtPeso.getText(), result.getTiempoFinal());
-            JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
+            GD_Programa_D gdD = new GD_Programa_D("src/Archivos/Programa_D/Atleta.txt");
 
-          
+            if (txtNombreApellido.getText().equals("") || txtCedula.getText().equals("") || txtFechaNac.getText().equals("") || txtDireccion.getText().equals("") || txtAltura.getText().equals("") || txtPeso.getText().equals("") || auxresultados == resultados.getItemAt(0)) {
+                throw new Exception("Debe llenar todos los campos.");
+            }
+
+            gdD.validarCedula(txtCedula.getText());
+            gdD.verificarCedula(gdD.leerDatosAtleta(), txtCedula.getText());
+            resultado = gdD.leerDatosResultado();
+            Resultado result = gdD.buscarResutado(resultado, auxresultados);
+            gdD.crearAtleta(txtNombreApellido.getText(), txtCedula.getText(), txtFechaNac.getText(), txtDireccion.getText(), txtAltura.getText(), txtPeso.getText(), result.getTiempoFinal());
+            JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
 
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
 
     }

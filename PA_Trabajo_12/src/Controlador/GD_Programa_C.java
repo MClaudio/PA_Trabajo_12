@@ -327,5 +327,34 @@ public class GD_Programa_C {
         return null;
         
     }
-
+    
+    public boolean validarCedula(String cedula) throws Exception {
+		// TODO Auto-generated method stub
+		try {
+			int a = Integer.parseInt(cedula);
+		}catch(NumberFormatException e){
+			throw new Exception("Formato incorrecto, contiene caracteres");
+		}
+		if(cedula.length()!=10)
+			throw new Exception("Debe ser de 10 dígitos");
+		
+		
+	
+		return true;
+    }
+    
+    public boolean verificarCedula(List<Empleado> listEmpleados ,String cedula) throws Exception {
+		int n=1;
+		if (listEmpleados.size()>0) {
+			for (int i = 0; i < listEmpleados.size(); i++) {
+				if (cedula.equals(listEmpleados.get(i).getCedula())) {
+					n++;
+				}
+			}
+			if (n>1) {
+			throw new Exception("Esta cedula ya fue registrada");
+			}			
+		}
+                return true;
+    }
 }

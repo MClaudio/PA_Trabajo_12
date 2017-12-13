@@ -31,15 +31,12 @@ public class VntCrear_C_Empleado extends JInternalFrame implements ActionListene
     private JTextField txtCedula;
     private JTextField txtFechaNac;
     private JTextField txtDirecccion;
+    private String auxuniversidades;
 
-    JButton btnGuardar;
-    JButton btnNuevo;
+    private JButton btnGuardar;
+    private JButton btnNuevo;
 
-    JLabel etiqueta1;
-    JLabel etiqueta2;
-    JLabel etiqueta3;
-    JLabel etiqueta4;
-    String auxuniversidades;
+   
 
     public VntCrear_C_Empleado() {
 
@@ -65,10 +62,10 @@ public class VntCrear_C_Empleado extends JInternalFrame implements ActionListene
         btnNuevo.addActionListener(this);
         btnNuevo.setActionCommand("botonNuevo");
 
-        etiqueta1 = new JLabel("NOMBRE APELLIDO ");
-        etiqueta2 = new JLabel("CEDULA ");
-        etiqueta3 = new JLabel("FECHA NACIMIENTO ");
-        etiqueta4 = new JLabel("DIRECCION ");
+        JLabel etiqueta1 = new JLabel("NOMBRE APELLIDO ");
+        JLabel etiqueta2 = new JLabel("CEDULA ");
+        JLabel etiqueta3 = new JLabel("FECHA NACIMIENTO ");
+        JLabel etiqueta4 = new JLabel("DIRECCION ");
 
         txtNombreApellido = new JTextField(15);
         txtCedula = new JTextField(15);
@@ -154,23 +151,28 @@ public class VntCrear_C_Empleado extends JInternalFrame implements ActionListene
 
     private void limpiar() {
         txtNombreApellido.setText(" ");
-    txtCedula.setText(" " );
-    txtFechaNac.setText(" ");
-    txtDirecccion.setText(" ");
+        txtCedula.setText(" ");
+        txtFechaNac.setText(" ");
+        txtDirecccion.setText(" ");
 
     }
 
     private void guardar() {
-
         try {
-            
-            GD_Programa_C gdC= new GD_Programa_C("src/Archivos/Programa_C/Empleado.txt");
+            if (txtNombreApellido.getText().equals("") || txtCedula.getText().equals("") || txtFechaNac.getText().equals("") || txtDirecccion.getText().equals("")) {
+                throw new Exception("Debe llenar todos los campos.");
+            }
+            GD_Programa_C gdC = new GD_Programa_C("src/Archivos/Programa_C/Empleado.txt");
+
+            gdC.validarCedula(txtCedula.getText());
+            gdC.verificarCedula(gdC.leerDatosEmpleado(), txtCedula.getText());
             gdC.crearEmpleado(txtNombreApellido.getText(), txtCedula.getText(), txtFechaNac.getText(), txtDirecccion.getText());
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
+
         } catch (Exception e) {
-
             e.printStackTrace();
-        }
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
+        }
     }
 }

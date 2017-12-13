@@ -35,23 +35,15 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
     private JTextField txtlugarComp;
     private JComboBox<String> atletas;
     private String auxatletas;
-    private  GD_Programa_D gdD ;
-
-
+    private GD_Programa_D gdD;
+    private JButton btnGuardar;
+    private JButton btnNuevo;
     
-    JButton btnGuardar;
-    JButton btnNuevo;
-
-    JLabel etiqueta1;
-    JLabel etiqueta2;
-    JLabel etiqueta3;
-    JLabel etiqueta4;
-
     public VntCrear_D_Competencia() {
-
+        
         initComponents();
     }
-
+    
     private void initComponents() {
         // TODO Auto-generated method stub
 
@@ -60,110 +52,110 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
         setClosable(true);
         setMaximizable(false);
         setMaximizable(true);
-
+        
         getContentPane().setLayout(new FlowLayout());
         
-        gdD= new GD_Programa_D("src/Archivos/Programa_D/Atleta.txt");
+        gdD = new GD_Programa_D("src/Archivos/Programa_D/Atleta.txt");
         List<Atleta> atlet = null;
         try {
             atlet = gdD.leerDatosAtleta();
         } catch (Exception e) {
-
+            
         }
         atletas = new JComboBox<String>();
         atletas.setBounds(29, 35, 148, 20);
         String arreglo[] = gdD.listAtletas(atlet);
         atletas.setModel(new DefaultComboBoxModel<>(arreglo));
         atletas.addActionListener(this);
-
+        
         btnGuardar = new JButton("GUARDAR");
         btnGuardar.addActionListener(this);
         btnGuardar.setActionCommand("botonGuardar");
-
+        
         btnNuevo = new JButton("NUEVO");
         btnNuevo.addActionListener(this);
         btnNuevo.setActionCommand("botonNuevo");
-
-        etiqueta1 = new JLabel("TIPO COMPETENCIA ");
-        etiqueta2 = new JLabel("FECHA ");
-        etiqueta3 = new JLabel("LUGAR ");
-        etiqueta4 = new JLabel("ATLETA ");
-
+        
+        JLabel etiqueta1 = new JLabel("TIPO COMPETENCIA ");
+        JLabel etiqueta2 = new JLabel("FECHA ");
+        JLabel etiqueta3 = new JLabel("LUGAR ");
+        JLabel etiqueta4 = new JLabel("ATLETA ");
+        
         txtCompetencia = new JTextField(15);
         txtFechaComp = new JTextField(15);
         txtlugarComp = new JTextField(15);
-       
+        
         JPanel panel1 = new JPanel();
         panel1.setLayout(new GridBagLayout());
         panel1.setBorder(BorderFactory.createTitledBorder("Datos Competencia "));
-
+        
         getContentPane().add(panel1, BorderLayout.CENTER);
-
+        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         panel1.add(etiqueta1, gbc);
-
+        
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
         panel1.add(txtCompetencia, gbc);
-
+        
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
         panel1.add(etiqueta2, gbc);
-
+        
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 1;
         panel1.add(txtFechaComp, gbc);
-
+        
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
         panel1.add(etiqueta3, gbc);
-
+        
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 2;
         panel1.add(txtlugarComp, gbc);
-
+        
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 3;
         panel1.add(etiqueta4, gbc);
-
-       gbc = new GridBagConstraints();
+        
+        gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 3;
-        panel1.add( atletas, gbc);
-
+        panel1.add(atletas, gbc);
+        
         JPanel botones = new JPanel();
         botones.setLayout(new FlowLayout());
         botones.add(btnGuardar);
         botones.add(btnNuevo);
-
+        
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 4;
         panel1.add(botones, gbc);
-
+        
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent evt) {
         // TODO Auto-generated method stub
         String comando = evt.getActionCommand();
-
+        
         System.out.println("evento boton " + comando);
         
         if (evt.getSource() == atletas) {
             auxatletas = atletas.getSelectedItem().toString();
         }
-
+        
         switch (comando) {
-
+            
             case "botonGuardar":
                 guardar();
                 break;
@@ -174,27 +166,36 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
                 break;
         }
     }
-
+    
     private void limpiar() {
-
+        txtCompetencia.setText("");
+        txtFechaComp.setText("");
+        txtlugarComp.setText("");
+        atletas.getItemAt(0);
+        
     }
-
+    
     private void guardar() {
         
-         List<Atleta> atletas = null;
+        List<Atleta> atlets = null;
         try {
-            atletas = gdD.leerDatosAtleta();
-            GD_Programa_D gdD= new GD_Programa_D("src/Archivos/Programa_D/Competencia.txt");
-            Atleta atlet= gdD.buscarAtleta(atletas,auxatletas);
-            gdD.crearCompetencia(txtCompetencia.getText(), txtFechaComp.getText(), txtlugarComp.getText(),atlet.getNombreApellido());
+            
+            if (txtCompetencia.getText().equals("") || txtFechaComp.getText().equals("") || txtlugarComp.getText().equals("") || auxatletas == atletas.getItemAt(0)) {
+                throw new Exception("Debe llenar todos los campos.");
+            }
+            atlets = gdD.leerDatosAtleta();
+            GD_Programa_D gdD = new GD_Programa_D("src/Archivos/Programa_D/Competencia.txt");
+            Atleta atlet = gdD.buscarAtleta(atlets, auxatletas);
+            gdD.crearCompetencia(txtCompetencia.getText(), txtFechaComp.getText(), txtlugarComp.getText(), atlet.getNombreApellido());
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
-
-
+            
         } catch (Exception e) {
-
+            
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            
         }
-
+        
     }
     
 }

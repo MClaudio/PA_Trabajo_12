@@ -341,6 +341,36 @@ public class GD_Programa_D {
         }
 
     }
+    
+     public boolean validarCedula(String cedula) throws Exception {
+		// TODO Auto-generated method stub
+		try {
+			int a = Integer.parseInt(cedula);
+		}catch(NumberFormatException e){
+			throw new Exception("Formato incorrecto, contiene caracteres");
+		}
+		if(cedula.length()!=10)
+			throw new Exception("Debe ser de 10 dígitos");
+		
+		
+	
+		return true;
+    }
+    
+    public boolean verificarCedula(List<Atleta> listAtletas ,String cedula) throws Exception {
+		int n=1;
+		if (listAtletas.size()>0) {
+			for (int i = 0; i < listAtletas.size(); i++) {
+				if (cedula.equals(listAtletas.get(i).getCedula())) {
+					n++;
+				}
+			}
+			if (n>1) {
+			throw new Exception("Esta cedula ya fue registrada");
+			}			
+		}
+                return true;
+    }
 
    
 
