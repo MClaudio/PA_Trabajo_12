@@ -79,17 +79,17 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         JMenu menu2 = new JMenu("Programa B");
         JMenu sub1Menu2 = new JMenu("Crear");
 
-        JMenuItem item1Submenu1Menu2 = new JMenuItem("Submenu 1");
+        JMenuItem item1Submenu1Menu2 = new JMenuItem("Pais");
         item1Submenu1Menu2.addActionListener(this);
         item1Submenu1Menu2.setActionCommand("item1Submenu1Menu2"); //caso 7
         sub1Menu2.add(item1Submenu1Menu2);
 
-        JMenuItem item2Submenu1Menu2 = new JMenuItem("Submenu 2");
+        JMenuItem item2Submenu1Menu2 = new JMenuItem("Provincia");
         item2Submenu1Menu2.addActionListener(this);
         item2Submenu1Menu2.setActionCommand("item2Submenu1Menu2"); //caso 8
         sub1Menu2.add(item2Submenu1Menu2);
 
-        JMenuItem item3Submenu1Menu2 = new JMenuItem("Submenu 3");
+        JMenuItem item3Submenu1Menu2 = new JMenuItem("Canton");
         item3Submenu1Menu2.addActionListener(this);
         item3Submenu1Menu2.setActionCommand("item3Submenu1Menu2"); //caso 9
         sub1Menu2.add(item3Submenu1Menu2);
@@ -98,17 +98,17 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
         JMenu sub2Menu2 = new JMenu("Listar");
 
-        JMenuItem item1Submenu2Menu2 = new JMenuItem("Submenu 1");
+        JMenuItem item1Submenu2Menu2 = new JMenuItem("Listar Pais");
         item1Submenu2Menu2.addActionListener(this);
         item1Submenu2Menu2.setActionCommand("item1Submenu2Menu2"); //caso 10
         sub2Menu2.add(item1Submenu2Menu2);
 
-        JMenuItem item2Submenu2Menu2 = new JMenuItem("Submenu 2");
+        JMenuItem item2Submenu2Menu2 = new JMenuItem("Listar Provincia");
         item2Submenu2Menu2.addActionListener(this);
         item2Submenu2Menu2.setActionCommand("item2Submenu2Menu2"); //caso 11
         sub2Menu2.add(item2Submenu2Menu2);
 
-        JMenuItem item3Submenu2Menu2 = new JMenuItem("Submenu 3");
+        JMenuItem item3Submenu2Menu2 = new JMenuItem("Listar Canton");
         item3Submenu2Menu2.addActionListener(this);
         item3Submenu2Menu2.setActionCommand("item3Submenu2Menu2"); //caso 12
         sub2Menu2.add(item3Submenu2Menu2);
@@ -319,24 +319,32 @@ public class VtnPrincipal extends JFrame implements ActionListener {
                 listarRevista();
                 break;
             case "item2Submenu2Menu1": //caso 5
+                listarArticulo();
                 break;
             case "item3Submenu2Menu1": //caso 6
+                listarAutor();
                 break;
 
             //Inicio crear Menu 2 Programa 2
             case "item1Submenu1Menu2": //caso 7
+                crearPais();
                 break;
             case "item2Submenu1Menu2": //caso 8
+                crearProvincia();
                 break;
             case "item3Submenu1Menu2": //caso 9
+                crearCanton();
                 break;
 
             //Inicio listar Menu 2 Programa 2
             case "item1Submenu2Menu2": //caso 10
+                listarPais();
                 break;
             case "item2Submenu2Menu2": //caso 11
+                listarProvincia();
                 break;
             case "item3Submenu2Menu2": //caso 12
+                listarCanton();
                 break;
 
             //Inicio crear Menu 3 Programa 3
@@ -489,6 +497,18 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    private void listarArticulo(){
+        VntListar_A_Articulo var=new VntListar_A_Articulo();
+        try{
+            var.setVisible(true);
+            var.setSelected(true);
+            escritorio.add(var);
+        }catch(Exception e){
+           e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
 
     private void crearAutor() {
         VntCrear_A_Autor caa = new VntCrear_A_Autor();
@@ -501,7 +521,91 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    private void listarAutor(){
+        VntListar_A_Autor var=new VntListar_A_Autor();
+        try{
+            var.setVisible(true);
+            var.setSelected(true);
+            escritorio.add(var);
+        }catch(Exception e){
+           e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
+    
+    private void crearPais() {
+        VntCrear_B_Pais vaa = new VntCrear_B_Pais();
+        try {
+            vaa.setVisible(true);
+            vaa.setSelected(true);
+            escritorio.add(vaa);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void listarPais(){
+        VntListar_B_Pais var=new VntListar_B_Pais();
+        try{
+            var.setVisible(true);
+            var.setSelected(true);
+            escritorio.add(var);
+        }catch(Exception e){
+           e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
 
+    private void crearProvincia() {
+        VntCrear_B_Provincia vaa = new VntCrear_B_Provincia();
+        try {
+            vaa.setVisible(true);
+            vaa.setSelected(true);
+            escritorio.add(vaa);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void listarProvincia(){
+        VntListar_B_Provincia var=new VntListar_B_Provincia();
+        try{
+            var.setVisible(true);
+            var.setSelected(true);
+            escritorio.add(var);
+        }catch(Exception e){
+           e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
+    
+    private void crearCanton() {
+        VntCrear_B_Canton vaa = new VntCrear_B_Canton();
+        try {
+            vaa.setVisible(true);
+            vaa.setSelected(true);
+            escritorio.add(vaa);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void listarCanton(){
+        VntListar_B_Canton var=new VntListar_B_Canton();
+        try{
+            var.setVisible(true);
+            var.setSelected(true);
+            escritorio.add(var);
+        }catch(Exception e){
+           e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
+    
     private void crearMedico() {
         VtnCrear_F_Medico vcm = new VtnCrear_F_Medico();
         try {

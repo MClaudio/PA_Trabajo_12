@@ -37,7 +37,7 @@ public class VntListar_B_Canton extends JInternalFrame {
         try{
             gdB=new GD_Programa_B();
             String[] cabezera = {"#", "Canton", "Codigo Postal", "N° Habitantes", "Provincia"};
-            List<Canton> re=gdB.listarCanton("src/Archivos/Programa_A/Revista.txt");
+            List<Canton> re=gdB.listarCanton("src/Archivos/Programa_B/Canton.txt");
             String[][] datos=new String[re.size()][cabezera.length];
             for(int i=0; i<re.size();i++){
                 Canton get=re.get(i);

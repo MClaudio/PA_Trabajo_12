@@ -30,7 +30,7 @@ public class VntCrear_B_Canton extends JInternalFrame implements ActionListener{
     }
     
     public void initcomponent(){
-        setTitle("Crear Consulta");
+        setTitle("Canton");
         setClosable(true);
         setMaximizable(true);
         setSize(300, 200);
@@ -88,7 +88,7 @@ public class VntCrear_B_Canton extends JInternalFrame implements ActionListener{
     private void listarProvincia() {
         gdB = new GD_Programa_B();
         try {
-            List<Provincia> provincias = gdB.listarProvincia("src/Archivos/Programa_F/Pacientes.txt");
+            List<Provincia> provincias = gdB.listarProvincia("src/Archivos/Programa_B/Canton.txt");
             String[] listPaciente = new String[provincias.size()];
             for (int i = 0; i < provincias.size(); i++) {
                 Provincia get = provincias.get(i);
@@ -105,7 +105,7 @@ public class VntCrear_B_Canton extends JInternalFrame implements ActionListener{
     
     public void btnGuardar(){
         try{
-            gdB=new GD_Programa_B("src/Archivos/Programa_A/Autor.txt");
+            gdB=new GD_Programa_B("src/Archivos/Programa_B/Provincia.txt");
             if (nombreCanton.getText().equals("") || codigoPostal.getText().equals("") || numeroHabitantes.getText().equals("")) {
                 throw new Exception("Porfavor rellene todos los campos");
             }

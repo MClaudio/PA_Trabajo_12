@@ -93,7 +93,7 @@ public class VntCrear_B_Provincia extends JInternalFrame implements ActionListen
     public void listarPais() {
         gdB = new GD_Programa_B();
         try {
-            List<Pais> cantones = gdB.listarPais("src/Archivos/Programa_A/Autor.txt");
+            List<Pais> cantones = gdB.listarPais("src/Archivos/Programa_B/Pais.txt");
             String[] listCanton = new String[cantones.size()];
             for (int i = 0; i < cantones.size(); i++) {
                 Pais get = cantones.get(i);
@@ -109,7 +109,7 @@ public class VntCrear_B_Provincia extends JInternalFrame implements ActionListen
     
     public void guardar() {
         try {
-            gdB = new GD_Programa_B("src/Archivos/Programa_A/Articulo.txt");
+            gdB = new GD_Programa_B("src/Archivos/Programa_B/Provincia.txt");
             if (nombreProvincia.getText().equals("") || region.getText().equals("") || gobernador.getText().equals("")) {
                 throw new Exception("Deve llenar todos los campos.");
             }

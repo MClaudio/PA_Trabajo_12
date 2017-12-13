@@ -36,7 +36,7 @@ public class VntListar_B_Pais extends JInternalFrame{
         try{
             gdB=new GD_Programa_B();
             String[] cabezera = {"#", "ISBN", "Numero de Edicion", "Nombre de Revista", "Idioma"};
-            List<Pais> re=gdB.listarPais("src/Archivos/Programa_A/Revista.txt");
+            List<Pais> re=gdB.listarPais("src/Archivos/Programa_B/Pais.txt");
             String[][] datos=new String[re.size()][cabezera.length];
             for(int i=0; i<re.size();i++){
                 Pais get=re.get(i);

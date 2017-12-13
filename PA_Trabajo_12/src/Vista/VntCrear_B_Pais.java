@@ -77,7 +77,7 @@ public class VntCrear_B_Pais extends JInternalFrame implements ActionListener {
         
     private void btnGuardar() {
         try {
-            gdB = new GD_Programa_B("src/Archivos/Programa_F/Consultas.txt");
+            gdB = new GD_Programa_B("src/Archivos/Programa_B/Pais.txt");
 
             if (nombreContinente.getText().equals("") || nombrePais.getText().equals("") || idioma.getText().equals("")) {
                 throw new Exception("Deve llenar todos los campos.");
