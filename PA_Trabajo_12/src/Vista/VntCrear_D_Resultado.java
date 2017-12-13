@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Controlador.GD_Programa_C;
+import Controlador.GD_Programa_D;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -15,6 +17,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -138,12 +141,18 @@ public class VntCrear_D_Resultado  extends JInternalFrame implements ActionListe
     }
 
     private void limpiar() {
+        txtTiempoFinal.setText(" ");
+        txtVelocidad.setText(" ");
+        txtDistanRecorr.setText(" ");
 
     }
 
     private void guardar() {
 
         try {
+            GD_Programa_D gdD= new GD_Programa_D("src/Archivos/Programa_D/Resultado.txt");
+            gdD.crearResultado(txtTiempoFinal.getText(), txtVelocidad.getText(), txtDistanRecorr.getText());
+            JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
 
@@ -151,6 +160,7 @@ public class VntCrear_D_Resultado  extends JInternalFrame implements ActionListe
         }
 
     }
+   
     
     
 }

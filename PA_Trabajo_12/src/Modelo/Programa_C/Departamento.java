@@ -13,10 +13,9 @@ public class Departamento {
     
     private String nombreDep;
     private String nombreSupervisor;
-    private int numeroDep;
-    private Empleado empleado;
+    private String numeroDep;
+    private String nomEmpleado;
 
- 
     public String getNombreDep() {
         return nombreDep;
     }
@@ -33,20 +32,22 @@ public class Departamento {
         this.nombreSupervisor = nombreSupervisor;
     }
 
-    public int getNumeroDep() {
+    public String getNumeroDep() {
         return numeroDep;
     }
 
-    public void setNumeroDep(int numeroDep) {
+    public void setNumeroDep(String numeroDep) {
         this.numeroDep = numeroDep;
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
+    public String getNomEmpleado() {
+        return nomEmpleado;
     }
 
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setNomEmpleado(String nomEmpleado) {
+        this.nomEmpleado = nomEmpleado;
     }
 
+   
+   
 }

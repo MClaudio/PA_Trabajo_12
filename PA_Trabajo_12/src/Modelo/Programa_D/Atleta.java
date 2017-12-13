@@ -13,7 +13,7 @@ public class Atleta extends Persona {
     
     private String altura;
     private String peso;
-    private Resultado resultado;
+    private String resultado;
 
     public String getAltura() {
         return altura;
@@ -31,13 +31,15 @@ public class Atleta extends Persona {
         this.peso = peso;
     }
 
-    public Resultado getResultado() {
+    public String getResultado() {
         return resultado;
     }
 
-    public void setResultado(Resultado resultado) {
+    public void setResultado(String resultado) {
         this.resultado = resultado;
     }
+
+    
 
    
 }

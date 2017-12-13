@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.GD_Programa_C;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -16,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -151,13 +153,20 @@ public class VntCrear_C_Empleado extends JInternalFrame implements ActionListene
     }
 
     private void limpiar() {
+        txtNombreApellido.setText(" ");
+    txtCedula.setText(" " );
+    txtFechaNac.setText(" ");
+    txtDirecccion.setText(" ");
 
     }
 
     private void guardar() {
 
         try {
-
+            
+            GD_Programa_C gdC= new GD_Programa_C("src/Archivos/Programa_C/Empleado.txt");
+            gdC.crearEmpleado(txtNombreApellido.getText(), txtCedula.getText(), txtFechaNac.getText(), txtDirecccion.getText());
+            JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
 
             e.printStackTrace();

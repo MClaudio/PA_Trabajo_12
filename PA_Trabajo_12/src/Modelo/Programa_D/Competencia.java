@@ -14,9 +14,7 @@ public class Competencia {
     private String claseCompetencia;
     private String fechaCompetencia;
     private String lugarCompetencia;
-    private Atleta atleta;
-
-  
+    private String atleta;
 
     public String getClaseCompetencia() {
         return claseCompetencia;
@@ -42,14 +40,15 @@ public class Competencia {
         this.lugarCompetencia = lugarCompetencia;
     }
 
-    public Atleta getAtleta() {
+    public String getAtleta() {
         return atleta;
     }
 
-    public void setAtleta(Atleta atleta) {
+    public void setAtleta(String atleta) {
         this.atleta = atleta;
     }
-    
-    
 
+  
+
+   
 }

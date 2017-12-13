@@ -14,9 +14,8 @@ public class Empresa {
     private String nombreEmpresa;
     private String numeroRUC;
     private String numeroSocios;
-    private Departamento departamento;
+    private String nombreDepartamento;
 
-    
     public String getNombreEmpresa() {
         return nombreEmpresa;
     }
@@ -41,12 +40,15 @@ public class Empresa {
         this.numeroSocios = numeroSocios;
     }
 
-    public Departamento getDepartamento() {
-        return departamento;
+    public String getNombreDepartamento() {
+        return nombreDepartamento;
     }
 
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
+    public void setNombreDepartamento(String nombreDepartamento) {
+        this.nombreDepartamento = nombreDepartamento;
     }
+
+    
+    
 
 }

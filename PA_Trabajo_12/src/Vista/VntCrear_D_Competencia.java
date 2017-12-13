@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Controlador.GD_Programa_D;
+import Modelo.Programa_D.Atleta;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -12,9 +14,12 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -27,6 +32,8 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
     private JTextField txtCompetencia;
     private JTextField txtFechaComp;
     private JTextField txtlugarComp;
+    private JComboBox<String> atletas;
+    private String auxatletas;
 
 
     
@@ -53,6 +60,13 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
         setMaximizable(true);
 
         getContentPane().setLayout(new FlowLayout());
+        
+        GD_Programa_D gdD = new GD_Programa_D("src/Archivos/Programa_D/Atleta.txt");
+        atletas = new JComboBox<String>();
+        atletas.setBounds(29, 35, 148, 20);
+        String arreglo[] = gdD.listAtletas();
+        atletas.setModel(new DefaultComboBoxModel<>(arreglo));
+        atletas.addActionListener(this);
 
         btnGuardar = new JButton("GUARDAR");
         btnGuardar.addActionListener(this);
@@ -112,10 +126,10 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
         gbc.gridy = 3;
         panel1.add(etiqueta4, gbc);
 
-       /* gbc = new GridBagConstraints();
+       gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 3;
-        panel1.add(  gbc);*/
+        panel1.add( atletas, gbc);
 
         JPanel botones = new JPanel();
         botones.setLayout(new FlowLayout());
@@ -135,6 +149,10 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
         String comando = evt.getActionCommand();
 
         System.out.println("evento boton " + comando);
+        
+        if (evt.getSource() == atletas) {
+            auxatletas = atletas.getSelectedItem().toString();
+        }
 
         switch (comando) {
 
@@ -156,6 +174,11 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
     private void guardar() {
 
         try {
+            GD_Programa_D gdD= new GD_Programa_D("src/Archivos/Programa_D/Competencia.txt");
+            Atleta atlet= gdD.buscarAtleta(auxatletas);
+            gdD.crearCompetencia(txtCompetencia.getText(), txtFechaComp.getText(), txtlugarComp.getText(),atlet.getNombreApellido());
+            JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
+
 
         } catch (Exception e) {
 

@@ -1,20 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+///*
+// -(* To change this license header, choose License Headers in Project Properties.
+// * To change this template file, choose Tools | Templates
+// * and open the template in the editor.
+// */
 package Vista;
 
+import Controlador.GD_Programa_C;
+import Controlador.GD_Programa_F;
+import Modelo.Programa_C.Empleado;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -23,10 +30,12 @@ import javax.swing.JTextField;
  * @author Cristian
  */
 public class VntCrear_C_Departamento extends JInternalFrame implements ActionListener {
-    
+
     private JTextField txtNmbreDep;
     private JTextField txtNombreSupe;
     private JTextField txtNumeroDep;
+    private JComboBox<String> empleados;
+    private GD_Programa_C gdE;
 
     JButton btnGuardar;
     JButton btnNuevo;
@@ -35,11 +44,13 @@ public class VntCrear_C_Departamento extends JInternalFrame implements ActionLis
     JLabel etiqueta2;
     JLabel etiqueta3;
     JLabel etiqueta4;
-    String auxuniversidades;
+    private String auxempleados;
 
     public VntCrear_C_Departamento() {
+        //this.gdC=gdC;
 
         initComponents();
+
     }
 
     private void initComponents() {
@@ -69,7 +80,21 @@ public class VntCrear_C_Departamento extends JInternalFrame implements ActionLis
         txtNmbreDep = new JTextField(15);
         txtNombreSupe = new JTextField(15);
         txtNumeroDep = new JTextField(15);
-       
+
+        gdE = new GD_Programa_C("src/Archivos/Programa_C/Empleado.txt");
+        List<Empleado> empl = null;
+        try {
+            empl = gdE.leerDatosEmpleado();
+        } catch (Exception e) {
+
+        }
+        empleados = new JComboBox<String>();
+        empleados.setBounds(29, 35, 148, 20);
+
+        String arreglo[] = gdE.listEmpleados(empl);
+        empleados.setModel(new DefaultComboBoxModel<>(arreglo));
+        empleados.addActionListener(this);
+
         JPanel panel1 = new JPanel();
         panel1.setLayout(new GridBagLayout());
         panel1.setBorder(BorderFactory.createTitledBorder("Datos Departamentos "));
@@ -111,10 +136,10 @@ public class VntCrear_C_Departamento extends JInternalFrame implements ActionLis
         gbc.gridy = 3;
         panel1.add(etiqueta4, gbc);
 
-       /* gbc = new GridBagConstraints();
+        gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 3;
-        panel1.add(  gbc);*/
+        panel1.add(empleados, gbc);
 
         JPanel botones = new JPanel();
         botones.setLayout(new FlowLayout());
@@ -135,6 +160,10 @@ public class VntCrear_C_Departamento extends JInternalFrame implements ActionLis
 
         System.out.println("evento boton " + comando);
 
+        if (evt.getSource() == empleados) {
+            auxempleados = empleados.getSelectedItem().toString();
+        }
+
         switch (comando) {
 
             case "botonGuardar":
@@ -154,16 +183,22 @@ public class VntCrear_C_Departamento extends JInternalFrame implements ActionLis
 
     private void guardar() {
 
+        List<Empleado> empl = null;
         try {
+            empl = gdE.leerDatosEmpleado();
+            GD_Programa_C gdC = new GD_Programa_C("src/Archivos/Programa_C/Departamento.txt");
+            Empleado empleado = gdC.buscarEmpleado(empl,auxempleados);
+            //gdC.crearDepartamento(txtNmbreDep.getText(), txtNombreSupe.getText(), txtNumeroDep.getText(), auxempleados);
+            gdC.crearDepartamento(txtNmbreDep.getText(), txtNombreSupe.getText(), txtNumeroDep.getText(),empleado.getNombreApellido() );
+
+            JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
 
     }
 
-
-    
-    
 }
