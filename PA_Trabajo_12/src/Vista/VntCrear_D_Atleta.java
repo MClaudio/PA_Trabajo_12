@@ -14,6 +14,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -38,6 +39,7 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
     private JTextField txtPeso;
     private JComboBox<String> resultados;
     private String auxresultados;
+    private GD_Programa_D gdD;
     
     
 
@@ -68,10 +70,16 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
 
         getContentPane().setLayout(new FlowLayout());
         
-         GD_Programa_D gdD = new GD_Programa_D("src/Archivos/Programa_D/Resultado.txt");
+        gdD = new GD_Programa_D("src/Archivos/Programa_D/Resultado.txt");
+        List<Resultado> result = null;
+        try {
+            result = gdD.leerDatosResultado();
+        } catch (Exception e) {
+
+        }
         resultados = new JComboBox<String>();
         resultados.setBounds(29, 35, 148, 20);
-        String arreglo[] = gdD.listResultados();
+        String arreglo[] = gdD.listResultados(result);
         resultados.setModel(new DefaultComboBoxModel<>(arreglo));
         resultados.addActionListener(this);
 
@@ -87,9 +95,9 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
         etiqueta2 = new JLabel("NUMERO CEDULA ");
         etiqueta3 = new JLabel("FECHA NACIMIENTO ");
         etiqueta4 = new JLabel("DIRECCION ");
-        etiqueta5 = new JLabel("ALTURA ");
-        etiqueta6 = new JLabel("PESO ");
-        etiqueta7 = new JLabel("RESULTADO ");
+        etiqueta5 = new JLabel("ALTURA (cm) ");
+        etiqueta6 = new JLabel("PESO (kg) ");
+        etiqueta7 = new JLabel("RESULTADO (seg)");
 
         txtNombreApellido = new JTextField(15);
         txtCedula = new JTextField(15);
@@ -217,12 +225,13 @@ public class VntCrear_D_Atleta extends JInternalFrame implements ActionListener 
     }
 
     private void guardar() {
-
+            
+        
+        List<Resultado> resultado = null;
         try {
-            
+            resultado = gdD.leerDatosResultado();
             GD_Programa_D gdD= new GD_Programa_D("src/Archivos/Programa_D/Atleta.txt");
-            Resultado result = gdD.buscarResutado(auxresultados);
-            
+            Resultado result = gdD.buscarResutado(resultado, auxresultados);
             gdD.crearAtleta(txtNombreApellido.getText(), txtCedula.getText(), txtFechaNac.getText(),txtDireccion.getText(),txtAltura.getText(),txtPeso.getText(), result.getTiempoFinal());
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
 

@@ -109,10 +109,10 @@ public class GD_Programa_D {
 
     }
     
-      public Resultado buscarResutado(String auxresultados) {
-            for (int i = 0; i < resultados.size(); i++) {
-            if (auxresultados.equals(resultados.get(i).getTiempoFinal())) {
-                return resultados.get(i);
+      public Resultado buscarResutado(List<Resultado> result,String auxresultados) {
+            for (int i = 0; i < result.size(); i++) {
+            if (auxresultados.equals(result.get(i).getTiempoFinal())) {
+                return result.get(i);
 
             }
         }
@@ -121,13 +121,13 @@ public class GD_Programa_D {
           
     }
       
-     public String[] listResultados() {
+     public String[] listResultados(List<Resultado> result) {
          
 
-        String[] resultads = new String[resultados.size() + 1];
+        String[] resultads = new String[result.size() + 1];
         resultads[0] = "Selecionar";
-        for (int i = 0; i < resultados.size(); i++) {
-            resultads[i + 1] = resultados.get(i).getTiempoFinal();
+        for (int i = 0; i < result.size(); i++) {
+            resultads[i + 1] = result.get(i).getTiempoFinal();
             //System.out.println(resultados.get(i).getNombreApellido());
         }
         return resultads;
@@ -238,21 +238,21 @@ public class GD_Programa_D {
 
     }
     
-      public String[] listAtletas() {
+      public String[] listAtletas(List<Atleta> atlet) {
           
-        String[] atlets = new String[atletas.size() + 1];
+        String[] atlets = new String[atlet.size() + 1];
         atlets[0] = "Selecionar";
-        for (int i = 0; i < atletas.size(); i++) {
-            atlets[i + 1] = atletas.get(i).getNombreApellido();
+        for (int i = 0; i < atlet.size(); i++) {
+            atlets[i + 1] = atlet.get(i).getNombreApellido();
         }
         return atlets;
           
     }
       
-     public Atleta buscarAtleta(String auxatletas) {
-          for (int i = 0; i < atletas.size(); i++) {
-            if (auxatletas.equals(atletas.get(i).getNombreApellido())) {
-                return atletas.get(i);
+     public Atleta buscarAtleta(List<Atleta> atlet,String auxatletas) {
+          for (int i = 0; i < atlet.size(); i++) {
+            if (auxatletas.equals(atlet.get(i).getNombreApellido())) {
+                return atlet.get(i);
 
             }
         }

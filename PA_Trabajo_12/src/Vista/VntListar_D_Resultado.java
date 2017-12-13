@@ -46,7 +46,7 @@ public class VntListar_D_Resultado extends JInternalFrame {
         try {
             gdD = new GD_Programa_D("src/Archivos/Programa_D/Resultado.txt");
 
-            String[] cabezera = {"#", "Resultado Final (seg)", "Velocidad (m/seg)", "Distancia Recorrida (m)"};
+            String[] cabezera = {"#", "Tiempo Final (seg)", "Velocidad (m/seg)", "Distancia Recorrida (m)"};
 
             List<Resultado> resul = gdD.leerDatosResultado();
             String[][] datos = new String[resul.size()][cabezera.length];

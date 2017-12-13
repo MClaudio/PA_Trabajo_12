@@ -13,6 +13,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -34,6 +35,7 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
     private JTextField txtlugarComp;
     private JComboBox<String> atletas;
     private String auxatletas;
+    private  GD_Programa_D gdD ;
 
 
     
@@ -61,10 +63,16 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
 
         getContentPane().setLayout(new FlowLayout());
         
-        GD_Programa_D gdD = new GD_Programa_D("src/Archivos/Programa_D/Atleta.txt");
+        gdD= new GD_Programa_D("src/Archivos/Programa_D/Atleta.txt");
+        List<Atleta> atlet = null;
+        try {
+            atlet = gdD.leerDatosAtleta();
+        } catch (Exception e) {
+
+        }
         atletas = new JComboBox<String>();
         atletas.setBounds(29, 35, 148, 20);
-        String arreglo[] = gdD.listAtletas();
+        String arreglo[] = gdD.listAtletas(atlet);
         atletas.setModel(new DefaultComboBoxModel<>(arreglo));
         atletas.addActionListener(this);
 
@@ -172,10 +180,12 @@ public class VntCrear_D_Competencia extends JInternalFrame implements ActionList
     }
 
     private void guardar() {
-
+        
+         List<Atleta> atletas = null;
         try {
+            atletas = gdD.leerDatosAtleta();
             GD_Programa_D gdD= new GD_Programa_D("src/Archivos/Programa_D/Competencia.txt");
-            Atleta atlet= gdD.buscarAtleta(auxatletas);
+            Atleta atlet= gdD.buscarAtleta(atletas,auxatletas);
             gdD.crearCompetencia(txtCompetencia.getText(), txtFechaComp.getText(), txtlugarComp.getText(),atlet.getNombreApellido());
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
 
