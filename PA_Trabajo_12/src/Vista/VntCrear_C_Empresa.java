@@ -14,6 +14,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -28,13 +29,14 @@ import javax.swing.JTextField;
  *
  * @author Cristian
  */
-public class VntCrear_C_Empresa  extends JInternalFrame implements ActionListener{
-    
+public class VntCrear_C_Empresa extends JInternalFrame implements ActionListener {
+
     private JTextField txtNombreEmp;
     private JTextField txtNumeroRuc;
     private JTextField txtNumeroSocios;
     private String auxDepartamentos;
-     private JComboBox<String> departamentos;
+    private JComboBox<String> departamentos;
+    private GD_Programa_C gdE;
 
     JButton btnGuardar;
     JButton btnNuevo;
@@ -59,11 +61,17 @@ public class VntCrear_C_Empresa  extends JInternalFrame implements ActionListene
         setMaximizable(true);
 
         getContentPane().setLayout(new FlowLayout());
-        
-        GD_Programa_C gdE = new GD_Programa_C("src/Archivos/Programa_C/Departamento.txt");
+
+        gdE = new GD_Programa_C("src/Archivos/Programa_C/Departamento.txt");
+        List<Departamento> departaments = null;
+        try {
+            departaments = gdE.leerDatosDepartamento();
+        } catch (Exception e) {
+
+        }
         departamentos = new JComboBox<String>();
         departamentos.setBounds(29, 35, 148, 20);
-        String arreglo[] = gdE.listDepartamentos();
+        String arreglo[] = gdE.listDepartamentos(departaments);
         departamentos.setModel(new DefaultComboBoxModel<>(arreglo));
         departamentos.addActionListener(this);
 
@@ -83,7 +91,7 @@ public class VntCrear_C_Empresa  extends JInternalFrame implements ActionListene
         txtNombreEmp = new JTextField(15);
         txtNumeroRuc = new JTextField(15);
         txtNumeroSocios = new JTextField(15);
-       
+
         JPanel panel1 = new JPanel();
         panel1.setLayout(new GridBagLayout());
         panel1.setBorder(BorderFactory.createTitledBorder("Datos Empresa "));
@@ -125,10 +133,10 @@ public class VntCrear_C_Empresa  extends JInternalFrame implements ActionListene
         gbc.gridy = 3;
         panel1.add(etiqueta4, gbc);
 
-       gbc = new GridBagConstraints();
+        gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 3;
-        panel1.add(departamentos ,gbc);
+        panel1.add(departamentos, gbc);
 
         JPanel botones = new JPanel();
         botones.setLayout(new FlowLayout());
@@ -148,7 +156,7 @@ public class VntCrear_C_Empresa  extends JInternalFrame implements ActionListene
         String comando = evt.getActionCommand();
 
         System.out.println("evento boton " + comando);
-         if (evt.getSource() == departamentos) {
+        if (evt.getSource() == departamentos) {
             auxDepartamentos = departamentos.getSelectedItem().toString();
         }
 
@@ -171,15 +179,17 @@ public class VntCrear_C_Empresa  extends JInternalFrame implements ActionListene
 
     private void guardar() {
 
-        try {
-             GD_Programa_C gdC = new GD_Programa_C("src/Archivos/Programa_C/Empresa.txt");
+        List<Departamento> departaments = null;
 
-            Departamento departament=gdC.buscarDepartamento(auxDepartamentos);
+        try {
+            departaments = gdE.leerDatosDepartamento();
+            GD_Programa_C gdC = new GD_Programa_C("src/Archivos/Programa_C/Empresa.txt");
+
+            Departamento departament = gdC.buscarDepartamento(departaments,auxDepartamentos);
             gdC.crearEmpresa(txtNombreEmp.getText(), txtNumeroRuc.getText(), txtNumeroSocios.getText(), departament.getNombreDep());
 //            gdC.creaDepartamento(txtNmbreDep.getText(), txtNombreSupe.getText(), txtNumeroDep.getText(),auxempleados );
 
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
-
 
         } catch (Exception e) {
 

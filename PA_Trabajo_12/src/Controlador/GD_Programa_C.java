@@ -277,12 +277,12 @@ public class GD_Programa_C {
     }
 
 
-    public String[] listDepartamentos() {
+    public String[] listDepartamentos(List<Departamento> departament) {
 
-        String[] departaments = new String[departamentos.size() + 1];
+        String[] departaments = new String[departament.size() + 1];
         departaments[0] = "Selecionar";
-        for (int i = 0; i < departamentos.size(); i++) {
-            departaments[i + 1] = departamentos.get(i).getNombreDep();
+        for (int i = 0; i < departament.size(); i++) {
+            departaments[i + 1] = departament.get(i).getNombreDep();
         }
         return departaments;
     }
@@ -292,6 +292,7 @@ public class GD_Programa_C {
         empleads[0] = "Selecionar";
         if (empleads.length>1) {
                   for (int i = 0; i < emplead.size(); i++) {
+                      System.out.println("Empleado "+emplead.get(i).getNombreApellido());
             
                  empleads[i + 1] = emplead.get(i).getNombreApellido();
 
@@ -307,7 +308,7 @@ public class GD_Programa_C {
         for (int i = 0; i < emplead.size()&&emplead.get(i)!=null; i++) {
             if (asp.equals(emplead.get(i).getNombreApellido())) {
              
-                return empleados.get(i);
+                return emplead.get(i);
 
             }
         }
@@ -315,10 +316,10 @@ public class GD_Programa_C {
         return null;
     }
 
-    public Departamento buscarDepartamento(String auxDepartamentos) {
-         for (int i = 0; i < departamentos.size(); i++) {
-            if (auxDepartamentos.equals(departamentos.get(i).getNombreDep())) {
-                return departamentos.get(i);
+    public Departamento buscarDepartamento(List<Departamento> departament,String auxDepartamentos) {
+         for (int i = 0; i < departament.size(); i++) {
+            if (auxDepartamentos.equals(departament.get(i).getNombreDep())) {
+                return departament.get(i);
 
             }
         }
