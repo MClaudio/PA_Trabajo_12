@@ -1,10 +1,14 @@
 
 package Vista;
 
+import Controlador.GD_Programa_E;
+import Modelo.Programa_E.Equipo;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
@@ -22,6 +26,7 @@ public class VtnCrear_E_Inscripcion extends JInternalFrame implements ActionList
     private JTextField txtNumero;
     private JTextField txtTorneo;
     private JComboBox equipos;
+    private GD_Programa_E gdE;
 
     public VtnCrear_E_Inscripcion() {
         initComponents();
@@ -63,6 +68,7 @@ public class VtnCrear_E_Inscripcion extends JInternalFrame implements ActionList
         gbc.gridx=1;
         gbc.gridy=3;
         equipos=new JComboBox();
+        initComboBox();
         panel.add(equipos, gbc);
         
         gbc.gridx=1;
@@ -84,8 +90,39 @@ public class VtnCrear_E_Inscripcion extends JInternalFrame implements ActionList
     
     public void btnGuardar(){
         try {
-            
+            gdE=new GD_Programa_E("src/Archivos/Programa_E/Inscripciones.txt");
+            if (txtFecha.getText().equals("") || txtNumero.getText().equals("") || txtTorneo.getText().equals("")) {
+                throw new Exception("Debe llenar todos los campos.");
+            }
+            if (!gdE.validNumeros(txtNumero.getText())) {
+                throw new Exception("El campo numero debe contener numeros.");
+            }
+            if (equipos.getSelectedItem()==null) {
+                throw new Exception("La lista de equipos esta vacia deve crear un equipo.");
+            }
+            gdE.creaInscripcion(txtFecha.getText(), Integer.parseInt(txtNumero.getText()), txtTorneo.getText(), (String)equipos.getSelectedItem());
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
+            
+            txtFecha.setText("");
+            txtNumero.setText("");
+            txtTorneo.setText("");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void initComboBox(){
+        try {
+            gdE = new GD_Programa_E();
+            List<Equipo> equipo=gdE.listarEquipo("src/Archivos/Programa_E/Equipos.txt");
+            String[] datos=new String[equipo.size()];
+            for (int i = 0; i < equipo.size(); i++) {
+                Equipo get = equipo.get(i);
+                datos[i]=get.getNombre();
+            }
+            equipos.setModel(new DefaultComboBoxModel(datos));
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

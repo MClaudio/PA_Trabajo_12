@@ -1,11 +1,16 @@
 
 package Vista;
 
+import Controlador.GD_Programa_E;
+import Modelo.Programa_E.Equipo;
+import Modelo.Programa_E.Jugador;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
@@ -26,6 +31,7 @@ public class VtnCrear_E_Jugador extends JInternalFrame implements ActionListener
     private JTextField txtNombreDeportivo;
     private JTextField txtNumCamiseta;
     private JComboBox equipos;
+    private GD_Programa_E gdE;
 
     public VtnCrear_E_Jugador() {
         initComponets();
@@ -35,7 +41,7 @@ public class VtnCrear_E_Jugador extends JInternalFrame implements ActionListener
         setTitle("Crear Jugador");
         setClosable(true);
         setMaximizable(true);
-        setSize(300, 300);
+        setSize(400, 300);
         
         JPanel panel=new JPanel();
         panel.setLayout(new GridBagLayout());
@@ -79,7 +85,7 @@ public class VtnCrear_E_Jugador extends JInternalFrame implements ActionListener
         
         gbc.gridx=0;
         gbc.gridy=5;
-        panel.add(new JLabel("Numero Deportivo:"), gbc);
+        panel.add(new JLabel("Numero de Camiseta:"), gbc);
         gbc.gridx=1;
         gbc.gridy=5;
         txtNumCamiseta=new JTextField(5);
@@ -91,6 +97,7 @@ public class VtnCrear_E_Jugador extends JInternalFrame implements ActionListener
         gbc.gridx=1;
         gbc.gridy=7;
         equipos=new JComboBox();
+        initComboBox();
         panel.add(equipos, gbc);
         
         gbc.gridx=1;
@@ -112,10 +119,65 @@ public class VtnCrear_E_Jugador extends JInternalFrame implements ActionListener
     
     public void btnGuardar(){
         try {
+            gdE = new GD_Programa_E("src/Archivos/Programa_E/Jugadores.txt");
+            if (txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtCedula.getText().equals("") || txtEdad.getText().equals("") || txtNombreDeportivo.getText().equals("")) {
+                throw new Exception("Debe llenar todos los campos.");
+            }
+            if (!gdE.validNumeros(txtCedula.getText())) {
+                throw new Exception("El campo cedula debe contener numeros.");
+            }
+            gdE.validaCedula(txtCedula.getText());
+            if (!gdE.validNumeros(txtEdad.getText())) {
+                throw new Exception("El campo edad debe contener numeros.");
+            }
+            if (!gdE.validNumeros(txtNumCamiseta.getText())) {
+                throw new Exception("El campo numero de camiseta debe contener numeros.");
+            }
+            if (equipos.getSelectedItem()==null) {
+                throw new Exception("La lista de equipos esta vacia deve crear un equipo.");
+            }
+
+            gdE.creaJugador(txtNombre.getText(), txtApellido.getText(), txtCedula.getText(), Integer.parseInt(txtEdad.getText()), txtNombreDeportivo.getText(), Integer.parseInt(txtNumCamiseta.getText()), (String)equipos.getSelectedItem());
+            
+            agregarJugador();
+            
+            txtNombre.setText("");
+            txtApellido.setText("");
+            txtCedula.setText("");
+            txtNombreDeportivo.setText("");
+            txtEdad.setText("");
+            txtNumCamiseta.setText("");
             
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void initComboBox(){
+        try {
+            gdE = new GD_Programa_E();
+            List<Equipo> equipo=gdE.listarEquipo("src/Archivos/Programa_E/Equipos.txt");
+            String[] datos=new String[equipo.size()];
+            for (int i = 0; i < equipo.size(); i++) {
+                Equipo get = equipo.get(i);
+                datos[i]=get.getNombre();
+            }
+            equipos.setModel(new DefaultComboBoxModel(datos));
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void agregarJugador(){
+        try {
+            gdE = new GD_Programa_E();
+            gdE.listarEquipo("src/Archivos/Programa_E/Equipos.txt");
+            List<Equipo>equipos=gdE.agregaJugador("src/Archivos/Programa_E/Jugadores.txt");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
 }

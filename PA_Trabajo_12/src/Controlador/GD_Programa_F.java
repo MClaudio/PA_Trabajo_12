@@ -31,7 +31,6 @@ public class GD_Programa_F {
     }
 
     public void creaMedico(String especialidad, String cedula, String nombre, String apellido) throws Exception {
-        //System.out.println(archivo.getAbsolutePath());
 
         if (archivo.exists()) {
             FileWriter file = new FileWriter(archivo, true);
@@ -303,43 +302,6 @@ public class GD_Programa_F {
         else {
             throw new Exception("El archivo no existe");
         }
-    }
-
-    public boolean verificarConsulta(String fecha, String paciente) throws Exception {
-        if (archivo.exists()) {
-            String palabra = "";
-            String linea = "";
-            boolean dia = false;
-            String fech="";
-
-            FileReader file = new FileReader(archivo);
-            BufferedReader lectura = new BufferedReader(file);
-            while (linea != null) {
-                linea = lectura.readLine();
-                if (linea != null) {
-                    for (int i = 0; i < linea.length(); i++) {
-                        char caracter = linea.charAt(i);
-                        if (caracter != '|') {
-                            palabra += caracter;
-                        }
-                        else {
-                            if (palabra.equals(fecha)) {
-                                dia = true;
-                            }
-                            if (dia == true && palabra.equals(paciente)) {
-                                return true;
-                            }
-                            palabra = "";
-                        }
-                    }
-                }
-
-            }
-        }
-        else {
-            throw new Exception("El archivo no existe");
-        }
-        return false;
     }
 
     public boolean validNumeros(String cadena) throws Exception {

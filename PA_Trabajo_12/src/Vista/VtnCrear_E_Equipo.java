@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Controlador.GD_Programa_E; 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Panel;
@@ -21,6 +22,7 @@ public class VtnCrear_E_Equipo extends JInternalFrame implements ActionListener{
     
     private JTextField txtNombre;
     private JTextField txtCategoria;
+    private GD_Programa_E gdE;
 
     public VtnCrear_E_Equipo() {
         initComponents();
@@ -67,8 +69,17 @@ public class VtnCrear_E_Equipo extends JInternalFrame implements ActionListener{
     
     public void btnGuardar(){
         try {
+            gdE = new GD_Programa_E("src/Archivos/Programa_E/Equipos.txt");
             
+            if (txtNombre.getText().equals("") || txtCategoria.getText().equals("")) {
+                throw new Exception("Debe llenar todos los campos.");
+            }
+            gdE.crearEquipo(txtNombre.getText(), txtCategoria.getText());
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
+            
+            txtNombre.setText("");
+            txtCategoria.setText("");
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

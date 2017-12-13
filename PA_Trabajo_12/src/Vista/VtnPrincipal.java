@@ -205,12 +205,12 @@ public class VtnPrincipal extends JFrame implements ActionListener {
         JMenu menu5 = new JMenu("Programa E");
         JMenu sub1Menu5 = new JMenu("Crear");
 
-        JMenuItem item1Submenu1Menu5 = new JMenuItem("Crear Jugador");
+        JMenuItem item1Submenu1Menu5 = new JMenuItem("Crear Equipo");
         item1Submenu1Menu5.addActionListener(this);
         item1Submenu1Menu5.setActionCommand("item1Submenu1Menu5"); //caso 25
         sub1Menu5.add(item1Submenu1Menu5);
 
-        JMenuItem item2Submenu1Menu5 = new JMenuItem("Crear Equipo");
+        JMenuItem item2Submenu1Menu5 = new JMenuItem("Crear Jugador");
         item2Submenu1Menu5.addActionListener(this);
         item2Submenu1Menu5.setActionCommand("item2Submenu1Menu5"); //caso 26
         sub1Menu5.add(item2Submenu1Menu5);
@@ -224,17 +224,17 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
         JMenu sub2Menu5 = new JMenu("Listar");
 
-        JMenuItem item1Submenu2Menu5 = new JMenuItem("Submenu 1");
+        JMenuItem item1Submenu2Menu5 = new JMenuItem("Listar Equipos");
         item1Submenu2Menu5.addActionListener(this);
         item1Submenu2Menu5.setActionCommand("item1Submenu2Menu5"); //caso 28
         sub2Menu5.add(item1Submenu2Menu5);
 
-        JMenuItem item2Submenu2Menu5 = new JMenuItem("Submenu 2");
+        JMenuItem item2Submenu2Menu5 = new JMenuItem("Listar Jugadores");
         item2Submenu2Menu5.addActionListener(this);
         item2Submenu2Menu5.setActionCommand("item2Submenu2Menu5"); //caso 29
         sub2Menu5.add(item2Submenu2Menu5);
 
-        JMenuItem item3Submenu2Menu5 = new JMenuItem("Submenu 3");
+        JMenuItem item3Submenu2Menu5 = new JMenuItem("Listar Inscripciones");
         item3Submenu2Menu5.addActionListener(this);
         item3Submenu2Menu5.setActionCommand("item3Submenu2Menu5"); //caso 30
         sub2Menu5.add(item3Submenu2Menu5);
@@ -385,10 +385,10 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
             //Inicio crear Menu 5 Programa 5
             case "item1Submenu1Menu5": //caso 25
-                crearJugador();
+                crearEquipo();
                 break;
             case "item2Submenu1Menu5": //caso 26
-                crearEquipo();
+                crearJugador();
                 break;
             case "item3Submenu1Menu5": //caso 27
                 crearInscripcion();
@@ -396,10 +396,13 @@ public class VtnPrincipal extends JFrame implements ActionListener {
 
             //Inicio listar Menu 5 Programa 5
             case "item1Submenu2Menu5": //caso 28
+                listarEquipos();
                 break;
             case "item2Submenu2Menu5": //caso 29
+                listarJugadores();
                 break;
             case "item3Submenu2Menu5": //caso 30
+                listarInscripciones();
                 break;
 
             //Inicio crear Menu 6 Programa 6
@@ -576,13 +579,35 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
-
+    
+    private void listarJugadores() {
+        VtnListar_E_Jugadores vlj = new VtnListar_E_Jugadores();
+        try {
+            vlj.setVisible(true);
+            vlj.setSelected(true);
+            escritorio.add(vlj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void crearEquipo() {
         VtnCrear_E_Equipo vce = new VtnCrear_E_Equipo();
         try {
             vce.setVisible(true);
             vce.setSelected(true);
             escritorio.add(vce);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void listarEquipos() {
+        VtnListar_E_Equipos vle = new VtnListar_E_Equipos();
+        try {
+            vle.setVisible(true);
+            vle.setSelected(true);
+            escritorio.add(vle);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -594,6 +619,17 @@ public class VtnPrincipal extends JFrame implements ActionListener {
             vci.setVisible(true);
             vci.setSelected(true);
             escritorio.add(vci);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void listarInscripciones() {
+        VtnListar_E_Inscripciones vli = new VtnListar_E_Inscripciones();
+        try {
+            vli.setVisible(true);
+            vli.setSelected(true);
+            escritorio.add(vli);
         } catch (Exception e) {
             e.printStackTrace();
         }
