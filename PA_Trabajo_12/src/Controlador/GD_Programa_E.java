@@ -21,14 +21,12 @@ import java.io.FileWriter;
 public class GD_Programa_E {
 
     private List<Inscripcion> inscripciones;
-    private List<Jugador> jugadores;
     private List<Equipo> equipos;
 
     private File archivo;
 
     public GD_Programa_E() {
         inscripciones = new ArrayList<Inscripcion>();
-        jugadores = new ArrayList<Jugador>();
         equipos = new ArrayList<Equipo>();
 
     }
@@ -267,6 +265,36 @@ public class GD_Programa_E {
             }
             file.close();
             return inscripciones;
+        }
+        else {
+            throw new Exception("El archivo no existe");
+        }
+    }
+    
+    public void verificarDuplicados(String cadena) throws Exception {
+        String linea = "";
+        String palabra = "";
+        if (archivo.exists()) {
+            FileReader file = new FileReader(archivo);
+            BufferedReader lectura = new BufferedReader(file);
+            while (linea != null) {
+                linea = lectura.readLine();
+                if (linea != null) {
+                    for (int i = 0; i < linea.length(); i++) {
+                        char caracter = linea.charAt(i);
+                        if (caracter != '|') {
+                            palabra += caracter;
+                        }
+                        else {
+                            if (palabra.equals(cadena)) {
+                                throw new Exception("Ya existe un dato registrado con los mismos datos.");
+                            }
+                            palabra = "";
+                        }
+                    }
+                }
+            }
+            file.close();
         }
         else {
             throw new Exception("El archivo no existe");

@@ -136,6 +136,7 @@ public class VtnCrear_E_Jugador extends JInternalFrame implements ActionListener
             if (equipos.getSelectedItem()==null) {
                 throw new Exception("La lista de equipos esta vacia deve crear un equipo.");
             }
+            gdE.verificarDuplicados(txtCedula.getText());
 
             gdE.creaJugador(txtNombre.getText(), txtApellido.getText(), txtCedula.getText(), Integer.parseInt(txtEdad.getText()), txtNombreDeportivo.getText(), Integer.parseInt(txtNumCamiseta.getText()), (String)equipos.getSelectedItem());
             

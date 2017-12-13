@@ -74,6 +74,8 @@ public class VtnCrear_E_Equipo extends JInternalFrame implements ActionListener{
             if (txtNombre.getText().equals("") || txtCategoria.getText().equals("")) {
                 throw new Exception("Debe llenar todos los campos.");
             }
+            gdE.verificarDuplicados(txtNombre.getText());
+            
             gdE.crearEquipo(txtNombre.getText(), txtCategoria.getText());
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito...", "Guardar", JOptionPane.INFORMATION_MESSAGE);
             
