@@ -35,7 +35,7 @@ public class GD_Programa_B {
         if (archivo.exists()) {
             FileWriter file = new FileWriter(archivo, true);
             BufferedWriter escritura = new BufferedWriter(file);
-            escritura.append(nombreContinente + " | " + nombrePais + " | " + idioma + " |\n ");
+            escritura.append(nombreContinente + "|" + nombrePais + "|" + idioma + "|\n");
             escritura.close();
         }
 
@@ -46,17 +46,16 @@ public class GD_Programa_B {
         if (archivo.exists()) {
             FileWriter file = new FileWriter(archivo, true);
             BufferedWriter escritura = new BufferedWriter(file);
-            escritura.append(nombreProvincia + " | " + region + " | " + gobernador + " | " + pais + " |\n ");
+            escritura.append(nombreProvincia + "|" + region + "|" + gobernador + "|" + pais + "|\n");
             escritura.close();
         }
     }
 
     public void agregarCanton(String nombreCanton, String codigoPostal, String numeroHabitantes, String provincia) throws IOException {
-        //System.out.println(archivo.getAbsolutePath());
         if (archivo.exists()) {
             FileWriter file = new FileWriter(archivo, true);
             BufferedWriter escritura = new BufferedWriter(file);
-            escritura.append(nombreCanton + " | " + codigoPostal + " | " + numeroHabitantes + " | " + provincia+" |\n ");
+            escritura.append(nombreCanton + "|" + codigoPostal + "|" + numeroHabitantes + "|" + provincia + "|\n");
             escritura.close();
         }
     }
@@ -81,7 +80,8 @@ public class GD_Programa_B {
                         char caracter = linea.charAt(i);
                         if (caracter != '|') {
                             palabra += caracter;
-                        } else {
+                        }
+                        else {
                             if (datonombreContinente == true && !palabra.equals("")) {
                                 pais.setNombreContinente(palabra);
                                 palabra = "";
@@ -107,13 +107,15 @@ public class GD_Programa_B {
             }
             file.close();
             return paises;
-        } else {
+        }
+        else {
             throw new Exception("El archivo no existe.");
         }
     }
 
     public List<Provincia> listarProvincia(String pathname) throws FileNotFoundException, IOException, Exception {
         archivo = new File(pathname);
+        List<Pais> aux;
         String linea = "";
         String palabra = "";
         boolean datonombreProvincia = true;
@@ -126,14 +128,16 @@ public class GD_Programa_B {
             BufferedReader lectura = new BufferedReader(file);
 
             while (linea != null) {
-                Provincia provincia = new Provincia();
                 linea = lectura.readLine();
+
                 if (linea != null) {
+                    Provincia provincia = new Provincia();
                     for (int i = 0; i < linea.length(); i++) {
                         char caracter = linea.charAt(i);
                         if (caracter != '|') {
                             palabra += caracter;
-                        } else {
+                        }
+                        else {
                             if (datonombreProvincia == true && !palabra.equals("")) {
                                 provincia.setNombreProvincia(palabra);
                                 palabra = "";
@@ -153,30 +157,30 @@ public class GD_Programa_B {
                                 datopais = true;
                             }
                             if (datopais == true && !palabra.equals("")) {
-                                List<Pais> pais = listarPais("src/Archivos/Programa_B/Pais.txt");
-                                String[] dato = new String[3];
-                                dato = palabra.split("");
-                                for (int j = 0; j < pais.size(); j++) {
-                                    Pais get = pais.get(j);
-                                    if (get.getNombrePais().equals(dato[1])) {
+                                System.out.println("Nombre Pais:" + palabra);         
+                                aux = listarPais("src/Archivos/Programa_B/Pais.txt");
+                                for (int j = 0; j < aux.size(); j++) {
+                                    Pais get = aux.get(j);
+                                    if (get.getNombrePais().equals(palabra)) {
                                         provincia.setPais(get);
                                     }
                                 }
-                                datopais=false;
-                                datonombreProvincia=true;
+                                palabra = "";
+                                datopais = false;
+                                datonombreProvincia = true;
                             }
                         }
                     }
                     provincias.add(provincia);
-                } 
+                }
             }
             file.close();
             return provincias;
-        }else{
+        }
+        else {
             throw new Exception("El archivo no existe");
         }
     }
-    
 
     public List<Canton> listarCanton(String pathname) throws FileNotFoundException, Exception {
         archivo = new File(pathname);
@@ -199,7 +203,8 @@ public class GD_Programa_B {
                         char caracter = linea.charAt(i);
                         if (caracter != '|') {
                             palabra += caracter;
-                        } else {
+                        }
+                        else {
                             if (datonombreCanton == true && !palabra.equals("")) {
                                 canton.setNombreCanton(palabra);
                                 palabra = "";
@@ -228,17 +233,18 @@ public class GD_Programa_B {
                                         canton.setProvincia(get);
                                     }
                                 }
-                                datoprovincias=false;
-                                datonombreCanton=true;
+                                datoprovincias = false;
+                                datonombreCanton = true;
                             }
                         }
                     }
                     cantones.add(canton);
-                } 
+                }
             }
             file.close();
             return cantones;
-        }else{
+        }
+        else {
             throw new Exception("El archivo no existe");
         }
     }

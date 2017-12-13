@@ -1,3 +1,2 @@
-
- Sudamerica | Ecuador | ES |
- 
+Sudamerica|Ecuador|ES|
+Sudamerica|Colombia|ES|

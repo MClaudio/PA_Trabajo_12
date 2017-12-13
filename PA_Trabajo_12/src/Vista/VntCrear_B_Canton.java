@@ -2,6 +2,7 @@
 package Vista;
 
 import Controlador.GD_Programa_B;
+import Modelo.Programa_B.Pais;
 import Modelo.Programa_B.Provincia;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -39,13 +40,13 @@ public class VntCrear_B_Canton extends JInternalFrame implements ActionListener{
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         
-        panel.add(new JLabel("Fecha:"));
+        panel.add(new JLabel("Nombre:"));
         nombreCanton = new JTextField(10);
         panel.add(nombreCanton);
         
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(new JLabel("Hora:"), gbc);
+        panel.add(new JLabel("Codigo postal:"), gbc);
         gbc.gridx = 1;
         gbc.gridy = 1;
         codigoPostal = new JTextField(5);
@@ -53,7 +54,7 @@ public class VntCrear_B_Canton extends JInternalFrame implements ActionListener{
         
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(new JLabel("Hora:"), gbc);
+        panel.add(new JLabel("Numero de habitantes:"), gbc);
         gbc.gridx = 1;
         gbc.gridy = 2;
         numeroHabitantes = new JTextField(5);
@@ -88,18 +89,19 @@ public class VntCrear_B_Canton extends JInternalFrame implements ActionListener{
     private void listarProvincia() {
         gdB = new GD_Programa_B();
         try {
+            
             List<Provincia> provincias = gdB.listarProvincia("src/Archivos/Programa_B/Provincia.txt");
-            String[] listPaciente = new String[provincias.size()];
+            String[] listProvincias = new String[provincias.size()];
             for (int i = 0; i < provincias.size(); i++) {
                 Provincia get = provincias.get(i);
-                listPaciente[i] = get.getNombreProvincia();
+                listProvincias[i] = get.getNombreProvincia();
             }
-            provincia1.setModel(new DefaultComboBoxModel(listPaciente));
+            provincia1.setModel(new DefaultComboBoxModel(listProvincias));
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Error: Algunos datos no an sido ingresados.", e.getMessage(),
+            JOptionPane.showMessageDialog(this,e.getMessage(), e.getMessage(),
                     JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
     

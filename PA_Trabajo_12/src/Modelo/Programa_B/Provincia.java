@@ -8,6 +8,7 @@ public class Provincia {
     private String nombreProvincia;
     private String region;
     private String gobernador;
+    
     private Pais pais;
     
     public String getNombreProvincia() {

@@ -63,7 +63,7 @@ public class VntCrear_B_Provincia extends JInternalFrame implements ActionListen
         
         abc.gridx = 0;
         abc.gridy = 3;
-        panel.add(new JLabel("Canton"), abc);
+        panel.add(new JLabel("Pais"), abc);
         abc.gridx = 1;
         abc.gridy = 3;
         pais = new JComboBox();
@@ -93,13 +93,13 @@ public class VntCrear_B_Provincia extends JInternalFrame implements ActionListen
     public void listarPais() {
         gdB = new GD_Programa_B();
         try {
-            List<Pais> cantones = gdB.listarPais("src/Archivos/Programa_B/Pais.txt");
-            String[] listCanton = new String[cantones.size()];
-            for (int i = 0; i < cantones.size(); i++) {
-                Pais get = cantones.get(i);
-                listCanton[i] = get.getNombrePais();
+            List<Pais> paises = gdB.listarPais("src/Archivos/Programa_B/Pais.txt");
+            String[] listPaises = new String[paises.size()];
+            for (int i = 0; i < paises.size(); i++) {
+                Pais get = paises.get(i);
+                listPaises[i] = get.getNombrePais();
             }
-            pais.setModel(new DefaultComboBoxModel(listCanton));
+            pais.setModel(new DefaultComboBoxModel(listPaises));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Error: Algunos datos no an sido ingresados.", e.getMessage(),
@@ -114,7 +114,7 @@ public class VntCrear_B_Provincia extends JInternalFrame implements ActionListen
                 throw new Exception("Deve llenar todos los campos.");
             }
             if (pais.getSelectedItem() == null) {
-                throw new Exception("La lista de autores esta vacia");
+                throw new Exception("La lista de paises esta vacia");
             }
             gdB.agregarProvincia(nombreProvincia.getText(), region.getText(), gobernador.getText(), (String) pais.getSelectedItem());
             JOptionPane.showMessageDialog(this, "Datos Guardados", "Guardar", JOptionPane.INFORMATION_MESSAGE);
